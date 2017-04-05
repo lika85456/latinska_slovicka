@@ -8,10 +8,10 @@
                   android:weight="1"
                   android:padding="5dp"
                   android:orientation="horizontal">
-        <ImageWiev
+        <ImageView
                    android:height="match_parent"
                    android:layoutGravity="left"/>
-        <TextWiev
+        <TextView
                   android:height="match_parent"
                   android:layoutGravity="left_horizontal"
                   android:width="wrap_content"/>
