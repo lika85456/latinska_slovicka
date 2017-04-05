@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-			  android:width="match_parent">
-    
+              android:width="match_parent"
+              android:height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+                  android:width="match_parent"
+                  android:weight="1"
+                  android:padding="5dp"
+                  android:orientation="horizontal">
+        <ImageWiev
+                   android:height="match_parent"
+                   android:layoutGravity="left"/>
+        <TextWiev
+                  android:height="match_parent"
+                  android:layoutGravity="left_horizontal"
+                  android:width="wrap_content"/>
+        
+    </LinearLayout>
 </LinearLayout>
