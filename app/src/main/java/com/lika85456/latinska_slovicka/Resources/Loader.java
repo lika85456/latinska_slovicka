@@ -9,10 +9,10 @@ import java.io.InputStream;
  * Daddy for loader classes
  */
 public class Loader {
-    public InputStream getInputStreamByPath(String path) {
+    public static InputStream getInputStream(String path) {
         //        0      1       2       3
         //Path = res/category/zviratka/name
-        String[] splited = path.split("\/"); // split by / (\ = escape char)
+        String[] splited = path.split("\\/"); // split by / (\ = escape char) wich is escaped by \ xDDD
         return Global.context.getResources().openRawResource(
                 Global.context.getResources().getIdentifier(splited[3].substring(0, splited[3].indexOf(".")),
                         splited[2], Global.context.getPackageName()));
