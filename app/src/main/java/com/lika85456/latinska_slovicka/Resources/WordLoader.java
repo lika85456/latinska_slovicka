@@ -13,7 +13,7 @@ public class WordLoader extends Loader {
      */
     public static Word[] load(String path) {
         //TODO load words from res
-        InputStream is = WordLoader.getInputStream(path + "/words");
+        InputStream is = WordLoader.getInputStream("raw/category/" + path + "/words");
         int c = 0;
         while (c != -1) {
             try {
