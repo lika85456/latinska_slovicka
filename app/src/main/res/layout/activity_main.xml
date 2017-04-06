@@ -3,18 +3,25 @@
               android:width="match_parent"
               android:height="match_parent"
               android:orientation="vertical">
-    <LinearLayout
-                  android:width="match_parent"
-                  android:weight="1"
-                  android:padding="5dp"
-                  android:orientation="horizontal">
-        <ImageView
-                   android:height="match_parent"
-                   android:layoutGravity="left"/>
-        <TextView
-                  android:height="match_parent"
-                  android:layoutGravity="left_horizontal"
-                  android:width="wrap_content"/>
-        
-    </LinearLayout>
+  <LinearLayout
+                android:width="match_parent"
+                android:weight="1"
+                android:padding="5dp"
+                android:orientation="horizontal">
+    <ImageView
+                 android:height="match_parent"
+                 android:layoutGravity="left"/>
+    <TextView
+              android:height="match_parent"
+              android:layoutGravity="center_horizontal"
+              android:width="wrap_content"/>
+    <TextView
+              android:height="match_parent"
+              android:layoutGravity="right"
+              android:width="wrap_content"/>
+    <ImageView
+                 android:height="match_parent"
+                 android:layoutGravity="right"/>
+    
+  </LinearLayout>
 </LinearLayout>
