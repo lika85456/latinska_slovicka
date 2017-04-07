@@ -1,0 +1,1 @@
+int drawableId = R.drawable.class.getField("file1").getInt(null);
