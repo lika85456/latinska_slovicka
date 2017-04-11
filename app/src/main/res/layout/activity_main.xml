@@ -1,27 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!-- napis si ty idcka! -->
 <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:layout_orientation="vertical">
-  <LinearLayout
+              android:orientation="vertical"
+              android:background="#555">
+    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:layout_orientation="horizontal">
-    <ImageView
+                android:orientation="horizontal"
+                android:background="#222">
+   <ImageView
                  android:layout_height="match_parent"
-                 android:layout_gravity="left"/>
+                 android:gravity="left"
+                 android:layout_width="wrap_content"/>
     <TextView
               android:layout_height="match_parent"
-              android:layout_gravity="center_horizontal"
-              android:layout_width="wrap_content"/>
+              android:gravity="center_horizontal"
+              android:layout_width="wrap_content"
+              android:color="#5f5"/>
     <TextView
               android:layout_height="match_parent"
-              android:layout_gravity="right"
+              android:gravity="right"
               android:layout_width="wrap_content"/>
     <ImageView
                  android:layout_height="match_parent"
-                 android:layout_gravity="right"/>
-    
+                 android:gravity="right"/>
   </LinearLayout>
 </LinearLayout>
