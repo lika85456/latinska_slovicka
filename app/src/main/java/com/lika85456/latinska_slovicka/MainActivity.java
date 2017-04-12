@@ -2,9 +2,9 @@ package com.lika85456.latinska_slovicka;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.lika85456.latinska_slovicka.Resources.Word;
-import com.lika85456.latinska_slovicka.Resources.WordLoader;
+import com.lika85456.latinska_slovicka.Resources.Category;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Global.context = this;
-        Word[] w = WordLoader.load("zviratka");
+        Category c = new Category("zviratka");
+        Log.d("zadek","vaebae");
     }
 }

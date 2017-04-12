@@ -1,8 +1,15 @@
 package com.lika85456.latinska_slovicka.Resources;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.util.Log;
+
 import com.lika85456.latinska_slovicka.Global;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Created by lika85456 on 04.04.2017.
@@ -16,12 +23,25 @@ import java.io.InputStream;
  * some_category_of_words/words.txt = words
  */
 public class Loader {
-    public static InputStream getInputStream(String path) {
-        //        0   1      2       3      4
-        //Path = res/raw/category/zviratka/name
-        String[] splited = path.split("\\/"); // split by / (\ = escape char) wich is escaped by \ xDDD
-        return Global.context.getResources().openRawResource(
-                Global.context.getResources().getIdentifier(splited[3],
-                        "raw/category/" + splited[2], Global.context.getPackageName()));
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public static String[] loadFile(String path) {
+        //Path = zviratka
+        //String[] splited = path.split("\\/"); // split by / (\ = escape char) wich is escaped by \ xDDD
+
+         InputStream is = Global.context.getResources().openRawResource(
+                Global.context.getResources().getIdentifier(path,
+                        "raw", Global.context.getPackageName()));
+
+        String line;
+        ArrayList<String> s = new ArrayList<String>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+            while ((line = br.readLine()) != null) {
+                s.add(line);
+            }
+        }
+        catch(Exception e){
+            Log.d("Error",e.toString());
+        }
+        return s.toArray(new String[0]);
     }
 }
