@@ -7,4 +7,10 @@ public class Word {
     public String cz;
     public String la;
     //public Icon icon;
+
+    public Word(String cz,String la)
+    {
+        this.cz = cz;
+        this.la = la;
+    }
 }

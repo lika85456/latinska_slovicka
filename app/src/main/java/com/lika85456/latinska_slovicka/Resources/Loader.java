@@ -35,7 +35,7 @@ public class Loader {
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            Log.d("Exception",e.toString());
         }
         return null;
     }
