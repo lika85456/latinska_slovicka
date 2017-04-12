@@ -1,12 +1,16 @@
 package com.lika85456.latinska_slovicka.Resources;
 
 import android.annotation.TargetApi;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -23,24 +27,60 @@ import java.util.ArrayList;
  * some_category_of_words/words.txt = words
  */
 public class Loader {
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String[] loadFile(String path) {
-        //Path = zviratka
-        //String[] splited = path.split("\\/"); // split by / (\ = escape char) wich is escaped by \ xDDD
-
-         InputStream is = Global.context.getResources().openRawResource(
-                Global.context.getResources().getIdentifier(path,
-                        "raw", Global.context.getPackageName()));
-
-        String line;
-        ArrayList<String> s = new ArrayList<String>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
-            while ((line = br.readLine()) != null) {
-                s.add(line);
-            }
+        int resId;
+        try {
+            resId = R.raw.class.getField(path).getInt(null);
+            return Loader.LoadText(resId);
         }
-        catch(Exception e){
-            Log.d("Error",e.toString());
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Drawable loadDrawable(String path)
+    {
+        int resId;
+        try {
+            resId = R.raw.class.getField(path).getInt(null);
+            return Loader.LoadDrawable(resId);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Drawable LoadDrawable(int id)
+    {
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            return Global.context.getResources().getDrawable(id, Global.context.getTheme());
+        } else {
+            return Global.context.getResources().getDrawable(id);
+        }
+    }
+
+    public static String[] LoadText(int resourceId) {
+        // The InputStream opens the resourceId and sends it to the buffer
+        InputStream is = Global.context.getResources().openRawResource(resourceId);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String readLine = null;
+        ArrayList<String> s = new ArrayList<String>();
+        try {
+            // While the BufferedReader readLine is not null
+            while ((readLine = br.readLine()) != null) {
+                s.add(readLine);
+            }
+
+            // Close the InputStream and BufferedReader
+            is.close();
+            br.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return s.toArray(new String[0]);
     }
