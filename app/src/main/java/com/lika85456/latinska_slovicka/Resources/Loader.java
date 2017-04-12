@@ -2,6 +2,7 @@ package com.lika85456.latinska_slovicka.Resources;
 
 import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
  */
 public class Loader {
     public static String[] loadFile(String path) {
+
         int resId;
         try {
             resId = R.raw.class.getField(path).getInt(null);
@@ -37,6 +39,7 @@ public class Loader {
         {
             Log.d("Exception",e.toString());
         }
+
         return null;
     }
 
@@ -51,6 +54,7 @@ public class Loader {
         {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -85,3 +89,4 @@ public class Loader {
         return s.toArray(new String[0]);
     }
 }
+
