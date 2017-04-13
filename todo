@@ -1,1 +1,4 @@
 int drawableId = R.drawable.class.getField("file1").getInt(null);
+
+  ImageView i = new ImageView(this);
+  i.setImageResource(R.drawable.my_image);
