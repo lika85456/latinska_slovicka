@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="mujText">#A70</color>
+    <color name="mujPodklad">#000</color>
+    <color name="mujPodkladPrvku">#222</color>
 </resources>
