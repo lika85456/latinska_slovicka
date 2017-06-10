@@ -55,23 +55,13 @@
                android:layout_gravity="center_horizontal"
                android:layout_marginTop="5pt"
                android:layout_marginBottom="5pt"
-               android:background="@color/mujPodkladPrvku"/>
+               android:background="@color/mujPodkladPrvku"
+               android:id="@+id/latinska_slovicka_text" />
                <LinearLayout
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical"
                    android:layout_gravity="top">
-
-                   <ImageButton
-                       android:layout_width="20pt"
-                       android:layout_height="20pt"
-                       android:layout_margin="5pt"
-                       android:background="@color/mujPodkladPrvku"/>
-                   <ImageButton
-                       android:layout_width="20pt"
-                       android:layout_height="20pt"
-                       android:layout_margin="5pt"
-                       android:background="@color/mujPodkladPrvku"/>
 
 
                </LinearLayout>
@@ -81,18 +71,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tlacitko1"
-            android:textColor="@color/mujText"
-            android:background="@color/mujPodkladPrvku"
-            android:layout_marginTop="2pt"
-            android:layout_marginBottom="2pt"
-            android:layout_marginLeft="20pt"
-            android:layout_marginRight="20pt"
-            android:textSize="10pt"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tlacitko2"
+            android:text="Procvičování"
             android:textColor="@color/mujText"
             android:background="@color/mujPodkladPrvku"
             android:layout_marginTop="2pt"
@@ -100,29 +79,44 @@
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
             android:textSize="10pt"
-            />
+            android:id="@+id/main_menu_button_procvicovani"
+            android:onClick="ProcvicovaniOnClick" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tlacitko3"
+            android:text="Test"
             android:textColor="@color/mujText"
             android:background="@color/mujPodkladPrvku"
             android:layout_marginTop="2pt"
             android:layout_marginBottom="2pt"
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
-            android:textSize="10pt"/>
+            android:textSize="10pt"
+            android:id="@+id/main_menu_button_test" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tlacitko4"
+            android:text="Souboj"
             android:textColor="@color/mujText"
             android:background="@color/mujPodkladPrvku"
             android:layout_marginTop="2pt"
             android:layout_marginBottom="2pt"
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
-            android:textSize="10pt"/>
+            android:textSize="10pt"
+            android:id="@+id/main_menu_button_souboj" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nastavení"
+            android:textColor="@color/mujText"
+            android:background="@color/mujPodkladPrvku"
+            android:layout_marginTop="2pt"
+            android:layout_marginBottom="2pt"
+            android:layout_marginLeft="20pt"
+            android:layout_marginRight="20pt"
+            android:textSize="10pt"
+            android:id="@+id/main_menu_button_nastaveni" />
 
     </LinearLayout>
 

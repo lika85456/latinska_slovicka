@@ -7,5 +7,5 @@ import android.content.Context;
  * Contains global variables like context wich is needed for resources (Fuj jak sem tohle mohl udělat)
  */
 public class Global {
-    public static Context context;
+    public static Context main_activity_context;
 }

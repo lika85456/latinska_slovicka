@@ -2,3 +2,20 @@ int drawableId = R.drawable.class.getField("file1").getInt(null);
 
   ImageView i = new ImageView(this);
   i.setImageResource(R.drawable.my_image);
+
+//Set image
+        Category c = new Category("category_zviratka");
+        ImageView t = (ImageView)this.findViewById(R.id.latinska_slovicka_text);
+        t.setImageDrawable(c.words[0].icon);
+
+Main menu ikonka (latinská slovíčka) nastav!
+Category Picker!!! - layout na vybírání kategorií. jednoduše asi takhle
+
+<div class="container"
+  <div class="inner" style="color:color_of_container - 0xF;border_radius=10px;width&height:match_parent;margin:5px "
+    <div class="category_1" style=" width=WIDTH_OF_MOBILE/4;height to samý;border_radius:10px;float:left"
+       <img src="..."
+    </div
+  </Div
+  <button onClick="presun na dalsi aktivitu"
+</div
