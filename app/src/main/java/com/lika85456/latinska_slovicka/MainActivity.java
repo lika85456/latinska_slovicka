@@ -30,4 +30,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void TestOnClick(View view)
+    {
+        Intent intent = new Intent(this, TestActivity.class);
+
+        //intent.putExtra(COINS, coins);
+        startActivity(intent);
+
+
+    }
+    public void NastaveniOnClick(View view)
+    {
+        Intent intent = new Intent(this, NastaveniActivity.class);
+
+        //intent.putExtra(COINS, coins);
+        startActivity(intent);
+
+
+    }
 }

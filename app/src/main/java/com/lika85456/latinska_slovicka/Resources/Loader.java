@@ -1,10 +1,6 @@
 package com.lika85456.latinska_slovicka.Resources;
 
-import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.lika85456.latinska_slovicka.Global;
@@ -61,15 +57,15 @@ public class Loader {
     public static Drawable LoadDrawable(int id)
     {
         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
-            return Global.context.getResources().getDrawable(id, Global.context.getTheme());
+            return Global.main_activity_context.getResources().getDrawable(id, Global.main_activity_context.getTheme());
         } else {
-            return Global.context.getResources().getDrawable(id);
+            return Global.main_activity_context.getResources().getDrawable(id);
         }
     }
 
     public static String[] LoadText(int resourceId) {
         // The InputStream opens the resourceId and sends it to the buffer
-        InputStream is = Global.context.getResources().openRawResource(resourceId);
+        InputStream is = Global.main_activity_context.getResources().openRawResource(resourceId);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String readLine = null;
         ArrayList<String> s = new ArrayList<String>();

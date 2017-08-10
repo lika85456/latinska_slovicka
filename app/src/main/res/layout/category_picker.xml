@@ -10,3 +10,18 @@
     tools:context="com.lika85456.latinska_slovicka.ProcvicovaniActivity">
 
 </RelativeLayout>
+
+<!--
+Category Picker!!! - layout na vybírání kategorií. jednoduše asi takhle
+
+<div class="container"
+  <div class="inner" style="color:color_of_container - 0xF;border_radius=10px;width&height:match_parent;margin:5px "
+    <div class="category_1" style=" width=WIDTH_OF_MOBILE/4;height to samý;border_radius:10px;float:left"
+       <img src="..."
+    </div
+  </Div
+  <button onClick="presun na dalsi aktivitu" width.. height.. border_radius.. color.. kapiš to?
+</div
+
+-->
+

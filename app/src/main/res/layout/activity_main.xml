@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000"
+    android:background="#FFF"
     android:weightSum="1">
 
 
@@ -18,24 +18,29 @@
             android:layout_width="100pt"
             android:layout_height="match_parent"
             android:textColor="#aaa"
-            android:text="Text1"
+            android:text="Guest85456"
             android:textAlignment="center"
             android:textSize="10pt"
-            android:padding="5pt"/>
+            android:padding="5pt"
+            android:id="@+id/nickname_text" />
         <TextView
-            android:layout_width="20pt"
+            android:layout_width="10pt"
             android:layout_height="match_parent"
             android:textSize="10pt"
             android:text="0"
-            android:padding="5pt"
             android:textAlignment="center"
-            android:textColor="#aaa"/>
+            android:textColor="#aaa"
+            android:id="@+id/coins_text"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp" />
 
         <ImageView
             android:layout_width="17pt"
             android:layout_height="17pt"
             android:layout_margin="2pt"
-            android:background="@color/mujPodkladPrvku"/>
+            android:src="@mipmap/coin"
+            android:id="@+id/CoinImage" />
 
     </LinearLayout>
 
@@ -50,8 +55,8 @@
            android:layout_height="wrap_content"
            android:gravity="center_horizontal">
            <ImageView
-               android:layout_width="93pt"
-               android:layout_height="70pt"
+               android:layout_width="150pt"
+               android:layout_height="100pt"
                android:layout_gravity="center_horizontal"
                android:layout_marginTop="5pt"
                android:layout_marginBottom="5pt"
@@ -74,7 +79,7 @@
             android:text="Procvičování"
             android:textColor="@color/mujText"
             android:background="@color/mujPodkladPrvku"
-            android:layout_marginTop="2pt"
+            android:layout_marginTop="20pt"
             android:layout_marginBottom="2pt"
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
@@ -92,19 +97,9 @@
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
             android:textSize="10pt"
-            android:id="@+id/main_menu_button_test" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Souboj"
-            android:textColor="@color/mujText"
-            android:background="@color/mujPodkladPrvku"
-            android:layout_marginTop="2pt"
-            android:layout_marginBottom="2pt"
-            android:layout_marginLeft="20pt"
-            android:layout_marginRight="20pt"
-            android:textSize="10pt"
-            android:id="@+id/main_menu_button_souboj" />
+            android:id="@+id/main_menu_button_test"
+            android:onClick="TestOnClick" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,7 +111,8 @@
             android:layout_marginLeft="20pt"
             android:layout_marginRight="20pt"
             android:textSize="10pt"
-            android:id="@+id/main_menu_button_nastaveni" />
+            android:id="@+id/main_menu_button_nastaveni"
+            android:onClick="NastaveniOnClick" />
 
     </LinearLayout>
 
