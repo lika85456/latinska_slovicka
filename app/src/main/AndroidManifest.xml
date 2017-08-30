@@ -16,12 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProcvicovaniActivity" />
-        <activity
-            android:name=".CategoryPickerActivity"
-            android:label="@string/title_activity_category_picker"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".NastaveniActivity"></activity>
+        <activity android:name=".NastaveniActivity" />
+        <activity android:name=".CategoryPickerActivity"></activity>
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ProcvicovaniOnClick(View view)
     {
-        Intent intent = new Intent(this, ProcvicovaniActivity.class);
+        Intent intent = new Intent(this, CategoryPickerActivity.class);
 
         intent.putExtra(COINS, coins);
         intent.putExtra(NICKNAME,nickname);

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFF"
     android:weightSum="1">
 
 
@@ -39,9 +39,10 @@
         <ImageView
             android:layout_width="17pt"
             android:layout_height="17pt"
-            android:layout_margin="2pt"
             android:src="@mipmap/coin"
-            android:id="@+id/CoinImage" />
+            android:id="@+id/CoinImage"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp" />
 
     </LinearLayout>
 
@@ -49,28 +50,34 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_marginTop="10pt">
+        android:background="@drawable/activity_main_background">
 
         <!-- Prosim nemnen vysku toho uvodniho obrazku jen sirku, diky. -->
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:gravity="center_horizontal">
-           <ImageView
-               android:layout_width="150pt"
-               android:layout_height="100pt"
+           android:layout_height="0dp"
+           android:gravity="center_horizontal"
+           android:paddingTop="20dp"
+           android:layout_weight="1">
+           <TextView
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
                android:layout_gravity="center_horizontal"
                android:layout_marginTop="5pt"
                android:layout_marginBottom="5pt"
-               android:background="@color/mujPodkladPrvku"
-               android:id="@+id/latinska_slovicka_text" />
+               android:id="@+id/latinska_slovicka_text"
+               android:text="   Latinská \n             slovíčka"
+               android:textSize="40dp"
+               android:textStyle="bold"
+               android:textColor="@color/latinska_slovicka_text_color" />
 
        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <Button
                 android:layout_width="match_parent"
