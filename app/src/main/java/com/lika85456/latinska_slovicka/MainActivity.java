@@ -10,6 +10,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String NICKNAME = "com.lika85456.latinska_slovicka.NICKNAME";
     public int coins = 0;
     public String nickname = "Guess";
+
+    //TODO udělej hezký pozadí pro čudlíky a pro top-bar (prolínání mezi světle modrou a tmavě modrou třeba?)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(COINS, coins);
         intent.putExtra(NICKNAME,nickname);
         startActivity(intent);
+
 
 
     }

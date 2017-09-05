@@ -8,8 +8,7 @@
     <color name="mujPodklad">#000</color>
     <color name="mujPodkladPrvku">#001e38</color>
     <color name="text_top_bar">#ffaf38</color>
-    <color name="latinska_slovicka_text_color">#0e004e</color>
+    <color name="latinska_slovicka_text_color">#130066</color>
 
     <color name="category_background">#001e38</color>
-    <color name="category_text">#ffaf38</color>
 </resources>
