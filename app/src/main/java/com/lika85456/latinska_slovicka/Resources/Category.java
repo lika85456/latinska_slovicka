@@ -44,10 +44,10 @@ public class Category {
             int imageID = Integer.parseInt(line.substring(0,placeWhereSpaceIs));
             String text = line.substring(placeWhereSpaceIs,line.length());
             String[] splited =  text.split("\\|");
-            temp.add(new Word(splited[0], splited[1],Loader.loadDrawable(String.valueOf(imageID))));
+            temp.add(new Word(splited[0], splited[1],Loader.loadDrawable("a"+String.valueOf(imageID))));
         }
         this.words = temp.toArray(new Word[0]);
-        this.image = Loader.loadDrawable("s"+name+"_background");
+        this.image = Loader.loadDrawable("s"+id+"_background");
     }
     public static ArrayList<Category> getCategories(Context context)
     {

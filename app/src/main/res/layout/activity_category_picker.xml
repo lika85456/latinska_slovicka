@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lika85456.latinska_slovicka.CategoryPickerActivity">
+    tools:context="com.lika85456.latinska_slovicka.CategoryPickerActivity"
+    android:background="@color/category_picker_background">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         android:id="@+id/categoryListView"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:padding="3pt" />
 
 </RelativeLayout>

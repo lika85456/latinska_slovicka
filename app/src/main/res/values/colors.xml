@@ -11,4 +11,8 @@
     <color name="latinska_slovicka_text_color">#130066</color>
 
     <color name="category_background">#001e38</color>
+
+    <color name="category_picker_background">#CCC</color>
+    <color name="c_background">#003666</color>
+    <color name="c_text_color">#ffcc00</color>
 </resources>

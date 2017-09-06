@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="31pt"
-    android:clickable="true">
+    android:clickable="true"
+    android:background="@color/c_background">
 <LinearLayout
     android:layout_height="30pt"
     android:layout_width="match_parent"
@@ -27,16 +28,38 @@
             android:id="@+id/categoryName_text"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="left|center_vertical"
+            android:minLines="1"
+            android:maxLines="3"
+            android:textColor="@color/c_text_color"
+            android:textSize="8pt" />
 
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="New Text"
-            android:id="@+id/wordCount_text"
-            android:layout_gravity="center|right"
             android:layout_weight="0.1"
-            android:gravity="center_vertical|center_horizontal" />
+            android:paddingRight="3pt">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Počet slov:"
+                android:id="@+id/textView2"
+                android:textColor="@color/c_text_color"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/wordCount_text"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:gravity="center_vertical"
+                android:textColor="@color/c_text_color" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -48,6 +71,6 @@
         android:layout_height="1dp"
         android:layout_weight="1"
         android:layout_gravity="bottom"
-        android:background="#3f3f3f"></LinearLayout>
+        android:background="#111"></LinearLayout>
 
 </LinearLayout>
