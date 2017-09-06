@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CategoryView">
-        <attr name="id" format="integer" />
-        <attr name="name" format="string" />
-    </declare-styleable>
+
 </resources>

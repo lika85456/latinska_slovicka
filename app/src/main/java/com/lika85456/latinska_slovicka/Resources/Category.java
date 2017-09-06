@@ -1,53 +1,88 @@
 package com.lika85456.latinska_slovicka.Resources;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.lika85456.latinska_slovicka.R;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
  * Created by lika85456 on 06.04.2017.
  * Category class, contains array of words
+ *
+ *
+ * STRUCTURE
+ * category.txt
+ * (ID) Name
+ *
+ * s(ID).txt
+ * (ImageID) CZ|LAT
+ *
+ * s(ID)_background - background of (ID) category
+ *
+ * a(0).png = image of word
  */
 public class Category {
     public String name;
     public Word[] words;
     public Drawable image;
-    public Category(String name)
+    public int id;
+
+    public Category(String name,int id)
     {
-        this.name = name.split("_")[1];
-        String[] lines = Loader.loadFile(name);
+        //PARSING FILES SHITS
+        this.name = name;
+        this.id = id;
+        String[] lines = Loader.loadFile("s"+id);
         ArrayList<Word> temp = new ArrayList<Word>();
 
         for(int i = 0; i< lines.length; i++)
         {
             String line = lines[i];
-            //canis|pes
-             String[] splited = line.split("\\|");
-             temp.add(new Word(splited[0],splited[1],Loader.loadDrawable(this.name+"_"+String.valueOf(i))));
+            //(ImageID) (Text)
+            //0 canis|pes
+            int placeWhereSpaceIs = line.indexOf(" ");
+            int imageID = Integer.parseInt(line.substring(0,placeWhereSpaceIs));
+            String text = line.substring(placeWhereSpaceIs,line.length());
+            String[] splited =  text.split("\\|");
+            temp.add(new Word(splited[0], splited[1],Loader.loadDrawable(String.valueOf(imageID))));
         }
         this.words = temp.toArray(new Word[0]);
-        this.image = Loader.loadDrawable(name);
+        this.image = Loader.loadDrawable("s"+name+"_background");
+    }
+    public static ArrayList<Category> getCategories(Context context)
+    {
+        ArrayList<Category> temp = new ArrayList<Category>();
+        String[] lines = Loader.loadFile("category");
+        for(String line : lines)
+        {
+            int placeWhereFirstSpaceIs = line.indexOf(" ");
+            temp.add(new Category(line.substring(placeWhereFirstSpaceIs,line.length()),Integer.parseInt(line.substring(0,placeWhereFirstSpaceIs))));
+        }
+        return temp;
     }
 
-    public static Category[] getCategories()
+/*
+ THIS IS OLD SHIT, JUST LOADING ALL FILES IN /raw :)
+ public static ArrayList<Category> getCategories(Context context)
     {
         ArrayList<Category> temp = new ArrayList<Category>();
         Field[] fields=R.raw.class.getFields();
         for(int count=0; count < fields.length; count++){
-            temp.add(new Category(fields[count].getName()));
+            try {
+                int resourceID=fields[count].getInt(fields[count]);
+                String name = context.getResources().getResourceName(resourceID);
+                if(Integer.getInteger(name)==null)
+                temp.add(new Category(name));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
-        return temp.toArray(new Category[0]);
+        return temp;
     }
 
-    public View getView()
+*/
+    public int getNumberOfWords()
     {
-        View v = new View();
-        //TODO nasypej tam základní parametry more!
-        v.setLayoutParams(new ViewGroup.LayoutParams(this,));
+        return this.words.length;
     }
 }

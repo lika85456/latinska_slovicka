@@ -22,6 +22,10 @@ import java.util.ArrayList;
  * some_category_of_words/icon.xxx = icon for category
  * some_category_of_words/i154.xxx = icon for word
  * some_category_of_words/words.txt = words
+ *
+ *
+ * Example of loadFile:
+ * loadFile("category.txt");
  */
 public class Loader {
     public static String[] loadFile(String path) {
