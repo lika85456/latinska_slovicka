@@ -2,6 +2,8 @@ package com.lika85456.latinska_slovicka;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 class CategorryArrayAdapter extends ArrayAdapter<Category> {
 
-    private Context context;
+    private final Context context;
     private List<Category> CategoryProperties;
 
     //constructor, call on creation
@@ -31,10 +33,10 @@ class CategorryArrayAdapter extends ArrayAdapter<Category> {
     }
 
     //called when rendering the list
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         //get the property we are displaying
-        Category property = CategoryProperties.get(position);
+        final Category property = CategoryProperties.get(position);
 
         //get the inflater and inflate the XML layout for each item
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -49,7 +51,21 @@ class CategorryArrayAdapter extends ArrayAdapter<Category> {
 
         //get the image associated with this property
         imageView.setImageDrawable(property.image);
+        view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                Log.d("clicked","clicked");
+                Intent intent = new Intent(context, CategoryActivity.class);
+                intent.putExtra("id", position);
+                intent.putExtra("name",property.name);
 
+                context.startActivity(intent);
+            }
+        });
         return view;
+    }
+    public Category getItem(int position){
+        return CategoryProperties.get(position);
     }
 }

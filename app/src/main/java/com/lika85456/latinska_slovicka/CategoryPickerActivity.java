@@ -15,9 +15,12 @@ public class CategoryPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
+        //Some crap setting listView and its categories
         ArrayList<Category> categories = Category.getCategories(this);
         ArrayAdapter<Category> adapter = new CategorryArrayAdapter(this, 0, categories);
         ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
+
+
     }
 }
