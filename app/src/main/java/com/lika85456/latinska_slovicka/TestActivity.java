@@ -1,7 +1,10 @@
 package com.lika85456.latinska_slovicka;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +27,7 @@ public class TestActivity extends AppCompatActivity {
     public Button button_back;
     public Button button_next;
     public byte rightWordID;
-
+    public int lastWordIDD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +63,64 @@ public class TestActivity extends AppCompatActivity {
         button_next = (Button)findViewById(R.id.button_next);
 
         //Click events
-
-
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOnClick(0,v);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOnClick(0,v);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOnClick(0,v);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnOnClick(0,v);
+            }
+        });
 
         loadNextWord(-1);
+    }
+
+    public void btnOnClick(int id,View v)
+    {
+        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
+        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
+        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
+        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
+        if(rightWordID==0)
+        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
+        if(rightWordID==1)
+            b2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
+        if(rightWordID==2)
+            b3.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
+        if(rightWordID==3)
+            b4.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
+
+        if(rightWordID==id)
+        {
+             //++
+        }
+        else
+        {
+            //--
+        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadNextWord(lastWordIDD);
+            }
+        }, 2000);
     }
 
     public void loadNextWord(int lastWordID)
@@ -77,6 +134,7 @@ public class TestActivity extends AppCompatActivity {
         {
             id = randomFromTo(0,words.length);
         }
+        this.lastWordIDD = id;
         Word w = words[id];
 
         imageView.setImageDrawable(w.icon);

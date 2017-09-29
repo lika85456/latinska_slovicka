@@ -15,4 +15,7 @@
     <color name="category_picker_background">#cccccc</color>
     <color name="c_background">#245682</color>
     <color name="c_text_color">#ffcc00</color>
+
+    <color name="test_button_right">#00fd2e</color>
+    <color name="test_button_wrong">#e21a21</color>
 </resources>
