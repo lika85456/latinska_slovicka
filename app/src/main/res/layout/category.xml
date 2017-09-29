@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="31pt"
     android:clickable="true"
-    android:background="@color/c_background">
+    android:background="@color/c_background"
+    android:id="@+id/main_lin_layout">
 <LinearLayout
     android:layout_height="30pt"
     android:layout_width="match_parent"

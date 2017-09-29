@@ -1,2 +1,7 @@
 0 pes|canis, is, m.
 1 had|serpéns, entis, m.
+2 had2|serpéns, entis, m.2
+3 had3|serpéns, entis, m.3
+4 had4|serpéns, entis, m.4
+5 had5|serpéns, entis, m.5
+6 had6|serpéns, entis, m.6

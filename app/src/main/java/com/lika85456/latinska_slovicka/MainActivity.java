@@ -6,8 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String COINS = "com.lika85456.latinska_slovicka.COINS";
-    public static final String NICKNAME = "com.lika85456.latinska_slovicka.NICKNAME";
+
     public int coins = 0;
     public String nickname = "Guess";
 
@@ -26,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     public void ProcvicovaniOnClick(View view)
     {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
+        intent.putExtra("goto",0);
 
-        intent.putExtra(COINS, coins);
-        intent.putExtra(NICKNAME,nickname);
+
         startActivity(intent);
 
 
@@ -36,9 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void TestOnClick(View view)
     {
-        Intent intent = new Intent(this, TestActivity.class);
-
-        //intent.putExtra(COINS, coins);
+        Intent intent = new Intent(this, CategoryPickerActivity.class);
+        intent.putExtra("goto",1);
         startActivity(intent);
 
 

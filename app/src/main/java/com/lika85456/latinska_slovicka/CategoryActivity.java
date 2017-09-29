@@ -1,6 +1,5 @@
 package com.lika85456.latinska_slovicka;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.Resources.Category;
 import com.lika85456.latinska_slovicka.Resources.Word;
+
+import java.util.ArrayList;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -22,16 +23,31 @@ public class CategoryActivity extends AppCompatActivity {
     public final int BACK = 0;
     public final int NEXT = 1;
 
-    public Category category;
+    public Word[] words;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        Intent intent = getIntent();
-        int id = intent.getIntExtra("id",0);
-        String name = intent.getStringExtra("name");
-        category = new Category(name,id);
+
+
+        ArrayList<Category> categories = new ArrayList<Category>();
+        String toParse = getIntent().getStringExtra("array");
+        String[] toParseA = toParse.split("€");
+        for(int i=0;i<toParseA.length;i++)
+        {
+            categories.add(new Category(toParseA[i]));
+        }
+        Category[] categoriesA = categories.toArray(new Category[0]);
+        int size = 0;
+        for(int i = 0;i<categoriesA.length;i++){
+            size+=categoriesA[i].getNumberOfWords();
+        }
+        words = new Word[size];
+        for(int i=0;i<categoriesA.length;i++)
+        {
+            System.arraycopy(categoriesA[i].words,0,words,0,categoriesA[i].words.length);
+        }
 
         //Onclick events
         Button button_back = (Button) findViewById(R.id.button_back);
@@ -56,7 +72,7 @@ public class CategoryActivity extends AppCompatActivity {
         czechView = (TextView) findViewById(R.id.textView_czech);
 
 
-        loadWord(category.words[word_id]);
+        loadWord(words[word_id]);
     }
 
     public void idmove(int moveid)
@@ -66,18 +82,18 @@ public class CategoryActivity extends AppCompatActivity {
             this.word_id--;
             if(word_id<0)
             {
-                word_id = category.words.length-1;
+                word_id = words.length-1;
             }
         }
         if(moveid==NEXT)
         {
             this.word_id++;
-            if(word_id>category.words.length-1)
+            if(word_id>words.length-1)
             {
                 this.word_id = 0;
             }
         }
-        loadWord(category.words[word_id]);
+        loadWord(words[word_id]);
     }
 
     public void loadWord(Word w)

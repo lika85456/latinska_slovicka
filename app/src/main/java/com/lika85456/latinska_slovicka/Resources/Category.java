@@ -21,12 +21,19 @@ import java.util.ArrayList;
  *
  * a(0).png = image of word
  */
-public class Category {
+public class Category{
     public String name;
     public Word[] words;
     public Drawable image;
     public int id;
 
+    //indicating if selected in CategoryPickerActivity
+    public Boolean selected = false;
+    public Category(String s)
+    {
+        this(s.split("\\|")[0],Integer.parseInt(s.split("\\|")[1]));
+
+    }
     public Category(String name,int id)
     {
         //PARSING FILES SHITS
@@ -60,6 +67,12 @@ public class Category {
         }
         return temp;
     }
+
+    public String toString()
+    {
+        return this.name+"|"+this.id;
+    }
+
 
 /*
  THIS IS OLD SHIT, JUST LOADING ALL FILES IN /raw :)

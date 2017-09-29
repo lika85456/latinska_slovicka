@@ -2,13 +2,13 @@ package com.lika85456.latinska_slovicka;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.Resources.Category;
@@ -20,7 +20,6 @@ import java.util.List;
  * Created by lika85456 on 06.09.2017.
  */
 class CategorryArrayAdapter extends ArrayAdapter<Category> {
-
     private final Context context;
     private List<Category> CategoryProperties;
 
@@ -55,12 +54,13 @@ class CategorryArrayAdapter extends ArrayAdapter<Category> {
             @Override
             public void onClick(View v)
             {
-                Log.d("clicked","clicked");
-                Intent intent = new Intent(context, CategoryActivity.class);
-                intent.putExtra("id", position);
-                intent.putExtra("name",property.name);
+                property.selected = !property.selected;
+                LinearLayout ln = (LinearLayout) v.findViewById(R.id.main_lin_layout);
+                if(property.selected==true)
+                ln.setBackgroundColor(0xFF0F406A);
+                else
+                ln.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.c_background, null));
 
-                context.startActivity(intent);
             }
         });
         return view;
