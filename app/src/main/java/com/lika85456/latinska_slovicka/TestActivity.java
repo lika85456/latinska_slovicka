@@ -1,5 +1,6 @@
 package com.lika85456.latinska_slovicka;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.Resources.Category;
@@ -24,10 +26,29 @@ public class TestActivity extends AppCompatActivity {
     public Button b2;
     public Button b3;
     public Button b4;
-    public Button button_back;
-    public Button button_next;
+    public Button buttonKategorie;
+
+    //public TextView textViewSuccessAll;
+    //public TextView textViewSuccessNow;
+    public TextView textViewProgress;
+    public TextView textViewLoader;
+    public TextView textViewNLoader;
+    public LinearLayout llGreen;
+    public LinearLayout llNull;
+
+
+    public int tryTotal;
+    public int tryRight;
+    public int TtryTotal;
+    public int TtryRight;
+    public int MAX_WORDS_IN_ROUND = 25;
+
     public byte rightWordID;
     public int lastWordIDD;
+
+
+
+    public boolean processingClick = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +71,7 @@ public class TestActivity extends AppCompatActivity {
         for(int i=0;i<categoriesA.length;i++)
         {
             System.arraycopy(categoriesA[i].words,0,words,0,categoriesA[i].words.length);
+            shuffleArray(words);
         }
 
         //Views init
@@ -59,8 +81,14 @@ public class TestActivity extends AppCompatActivity {
         b2 = (Button)findViewById(R.id.button2);
         b3 = (Button)findViewById(R.id.button3);
         b4 = (Button)findViewById(R.id.button4);
-        button_back = (Button)findViewById(R.id.button_back);
-        button_next = (Button)findViewById(R.id.button_next);
+        buttonKategorie = (Button)findViewById(R.id.buttonKategorie);
+        //textViewSuccessAll = (TextView) findViewById(R.id.textViewSuccessAll);
+        //textViewSuccessNow = (TextView) findViewById(R.id.textViewSuccessNow);
+        textViewLoader = (TextView) findViewById(R.id.textViewLoader);
+        textViewNLoader = (TextView) findViewById(R.id.textViewNLoader);
+        textViewProgress = (TextView) findViewById(R.id.textViewProgress);
+        llGreen = (LinearLayout)findViewById(R.id.llGreen);
+        llNull = (LinearLayout)findViewById(R.id.llNull);
 
         //Click events
         b1.setOnClickListener(new View.OnClickListener() {
@@ -72,48 +100,73 @@ public class TestActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnOnClick(0,v);
+                btnOnClick(1,v);
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnOnClick(0,v);
+                btnOnClick(2,v);
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnOnClick(0,v);
+                btnOnClick(3,v);
             }
         });
+        buttonKategorie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(v.getContext(), CategoryPickerActivity.class);
+                intent.putExtra("goto",1);
+                v.getContext().startActivity(intent);
+            }
+        });
+
 
         loadNextWord(-1);
     }
 
     public void btnOnClick(int id,View v)
     {
-        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
-        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
-        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
-        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_wrong, null));
+        if (processingClick==true)
+            return;
+        else
+        processingClick = true;
+        b1.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_wrong, null));
+        b2.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_wrong, null));
+        b3.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_wrong, null));
+        b4.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_wrong, null));
         if(rightWordID==0)
-        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
-        if(rightWordID==1)
-            b2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
-        if(rightWordID==2)
-            b3.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
-        if(rightWordID==3)
-            b4.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.test_button_right, null));
-
+            b1.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_right, null));
+        else if(rightWordID==1)
+            b2.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_right, null));
+        else if(rightWordID==2)
+            b3.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_right, null));
+        else if(rightWordID==3)
+            b4.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_right, null));
+        tryTotal++;
+        TtryTotal++;
+        if(TtryTotal>=MAX_WORDS_IN_ROUND)
+        {
+            //reset round counter
+            TtryRight = 0;
+            TtryTotal = 1;
+        }
         if(rightWordID==id)
         {
-             //++
+             tryRight++;
+             TtryRight++;
+
         }
         else
         {
             //--
         }
+
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -125,15 +178,24 @@ public class TestActivity extends AppCompatActivity {
 
     public void loadNextWord(int lastWordID)
     {
+
+        if(lastWordID+1 == words.length)
+        {
+            Intent intent;
+            intent = new Intent(this, TestResultActivity.class);
+            startActivity(intent);
+            return;
+        }
+        processingClick = false;
+        b1.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
+        b2.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
+        b3.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
+        b4.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
         Random r = new Random();
 
         Boolean isCz = r.nextBoolean();
 
-        int id = randomFromTo(0,words.length);
-        while(id==lastWordID)
-        {
-            id = randomFromTo(0,words.length);
-        }
+        int id = lastWordID+1;
         this.lastWordIDD = id;
         Word w = words[id];
 
@@ -161,6 +223,37 @@ public class TestActivity extends AppCompatActivity {
             b3.setText(wordds[2].cz);
             b4.setText(wordds[3].cz);
         }
+        float procentaT=0;
+        float procenta=0;
+        //Set statistics shit text
+
+
+        if(TtryTotal!=0)
+        procentaT = ((float)TtryRight/(float)TtryTotal);
+        if(tryTotal!=0)
+        procenta = ((float)tryRight/(float)tryTotal);
+
+
+        //textViewSuccessNow.setText("Vaše úspěšnost v "+MAX_WORDS_IN_ROUND+" kolech: "+TtryRight+"/"+TtryTotal+" = "+(int)(procentaT*100f)+"%");
+        //textViewSuccessAll.setText("Vaše celková úspěšnost: "+tryRight+"/"+tryTotal+" = "+(int)(procenta*100f)+"%");
+        textViewLoader.setText((int)(procenta*100)+"%");
+        textViewNLoader.setText(tryRight+"/"+tryTotal);
+        textViewProgress.setText((id+1)+"/"+words.length);
+
+        LinearLayout.LayoutParams Green = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                procenta
+        );
+        LinearLayout.LayoutParams Null = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                1f-procenta
+        );
+        Green.setMargins(0,20,0,20);
+        llGreen.setLayoutParams(Green);
+        llNull.setLayoutParams(Null);
+
     }
 
     public Word[] generate4(Word SelectedWord)
@@ -187,5 +280,17 @@ public class TestActivity extends AppCompatActivity {
     public int randomFromTo(int minimum,int maximum)
     {
         return minimum + (int)(Math.random() * (maximum - minimum));
+    }
+
+    public static void shuffleArray(Word[] ar)
+    {
+        Random rnd = new Random();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            Word a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
     }
 }

@@ -77,21 +77,22 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Large Text"
                     android:id="@+id/textView"
                     android:layout_gravity="center"
                     android:textSize="35dp"
-                    android:textColor="@color/c_background" />
+                    android:textColor="@color/c_background"
+                    android:gravity="top|center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2">
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -110,7 +111,8 @@
                             android:layout_height="wrap_content"
                             android:text="New Button"
                             android:id="@+id/button1"
-                            android:layout_gravity="bottom|right" />
+                            android:layout_gravity="bottom|right"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -124,7 +126,8 @@
                             android:layout_height="wrap_content"
                             android:text="New Button"
                             android:id="@+id/button2"
-                            android:layout_gravity="top|right" />
+                            android:layout_gravity="top|right"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -145,7 +148,8 @@
                             android:layout_height="wrap_content"
                             android:text="New Button"
                             android:id="@+id/button3"
-                            android:layout_gravity="left|bottom" />
+                            android:layout_gravity="left|bottom"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -159,68 +163,128 @@
                             android:layout_height="wrap_content"
                             android:text="New Button"
                             android:id="@+id/button4"
-                            android:layout_gravity="top|left" />
+                            android:layout_gravity="top|left"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:layout_weight="0">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Zpět"
-                        android:id="@+id/button_back"
-                        android:layout_marginLeft="15dp"
-                        android:background="@color/c_background"
-                        android:textColor="@color/c_text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center">
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Přehrát"
-                        android:id="@+id/button_play"
-                        android:background="#98576ec3"
-                        android:layout_gravity="center"
-                        android:textColor="@color/c_text_color" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:id="@+id/llGreen"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="#00FF00"></LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:id="@+id/llNull"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"></LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Small Text"
+                                    android:id="@+id/textViewLoader"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="15dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Small Text"
+                                    android:id="@+id/textViewNLoader"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="15dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="1">
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Další"
-                        android:id="@+id/button_next"
-                        android:layout_gravity="right"
-                        android:layout_marginRight="15dp"
-                        android:background="@color/c_background"
-                        android:textColor="@color/c_text_color" />
-                </LinearLayout>
+                        android:text="Kategorie"
+                        android:id="@+id/buttonKategorie"
+                        android:background="@color/mujPodkladPrvku"
+                        android:textColor="@color/mujText"
+                        android:layout_weight="0"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Medium Text"
+                        android:id="@+id/textViewProgress"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

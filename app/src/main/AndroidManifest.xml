@@ -27,7 +27,8 @@
         <activity
             android:name=".CategoryPickerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".TestResultActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#001e38</color>
+    <color name="colorPrimary">#002538</color>
     <color name="colorPrimaryDark">#181818</color>
     <color name="colorAccent">#2f35da</color>
 
@@ -13,9 +13,7 @@
     <color name="category_background">#001e38</color>
 
     <color name="category_picker_background">#cccccc</color>
-    <color name="c_background">#245682</color>
-    <color name="c_text_color">#ffcc00</color>
-
-    <color name="test_button_right">#00fd2e</color>
-    <color name="test_button_wrong">#e21a21</color>
+    <color name="c_background">#002538</color>
+    <color name="c_background_selected">#005580</color>
+    <color name="c_text_color">#e79613</color>
 </resources>

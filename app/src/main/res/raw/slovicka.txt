@@ -1,0 +1,32 @@
+0 voda|aqua,ae, f.
+1 srdečnice|aorta,ae, f.
+2 tepna|arteria, ae, f.
+3 buňka|cellula, ae, f.
+4 páteř|collumna vertebrarum, ae, f.
+5 být|esse
+6 a, i|et
+7 je|est
+8 jsou|sunt
+9 tvar, podoba|forma, ae, f.
+10 jamka, příkop|fossa, ae, f.
+11 zlomenina|fractura, ae, f.
+12 žláza|glandula, ae, f.
+13 brána|ianua, ae, f.
+14 dveře|porta, ae, f.
+15 v|in + abl.
+16 do|in + ak.
+17 pod|infra + ak.
+18 mezi|inter + ak.
+19 destička|lamina, ae, f.
+20 jazyk|lingua, ae, f.
+21 prs, prsní žláza|mamma, ae, f.
+22 prevence|praeventia, ae, f.
+23 blízko|prope + ak.
+24 lopatka|scapula, ae, f.
+25 bez|sine + abl.
+26 hřeben, trn|spina, ae, f.
+27 pod|sub + abl.
+28 nad|suprá + ak.
+29 žíla|vena, ae, f.
+30 vrátnice|vena portae
+31 obratel|vertebra,ae, f.

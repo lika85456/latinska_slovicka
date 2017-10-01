@@ -1,1 +1,2 @@
-0 Zvířátka
+0 První lekce|0-5
+1 Druhá lekce|32-100
