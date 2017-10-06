@@ -2,8 +2,8 @@
 
 někde ve složce res/raw
 funguje to na principu databázový tabulky
-category.txt = soubor pro ukládání jmen kategorií a jejich slovíček
-{ID_KATEGORIE} {JMÉNO_KATEGORIE}|{POLE SLOVÍČEK podle mýho systému}
+category.txt = soubor pro ukládání jmen kategorií a jejich slovíček <br>
+{ID_KATEGORIE} {JMÉNO_KATEGORIE}|{POLE SLOVÍČEK podle mýho systému} <br>
 0 Zvířátka|0-37,38,40,50,80-120
 
 slovicka.txt = soubor pro ukládání slovíček a id pro nastavení obrázku
