@@ -1,2 +1,2 @@
 0 První lekce|0-5
-1 Druhá lekce|32-100
+1 Druhá lekce|32-62
