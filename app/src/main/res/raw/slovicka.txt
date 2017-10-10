@@ -30,3 +30,34 @@
 29 žíla|vena, ae, f.
 30 vrátnice|vena portae
 31 obratel|vertebra,ae, f.
+32 a, ab|od + abl.
+33 ad|k, do, na + ak.
+34 aegre|těžce, těžko
+35 aegrotus, a, um|nemocný,-á,-é
+36 amputare|amputovat
+37 ante|před + ak.
+38 ausculto, are|vyšetřovat, poslouchat
+39 cancer,cri m.|rakovina
+40 capitulum, i, n.|hlavička
+41 cavum, i, n.|dutina
+42 cerebrum, i, n.| mozek
+43 contra|proti + ak.
+44 cranium, ii, n.|lebka
+45 curo, are|pečovat o někoho, starat se
+46 destilo, are|destilovat, překapávat
+47 humerus, i, m.|kost pažní
+48 medicus, i, m.|lékař
+49 morbus, i, m.|nemoc
+50 musculus, i, m.|sval
+51 nasus, i, m.|nos
+52 nervus, i, m.|nerv
+53 oculus, i, m.|oko
+54 orbita, ae, f.|očnice
+55 per|skrze, během, přes + ak.
+56 periodus, i, f.|perioda, období
+57 post|po + ak.
+58 rectum, i, n.|konečník
+59 sano, are|léčit
+60 septum, i, n.|přepážka
+61 spasmus, i, n.|křeč
+62 ventriculus, i, m.|žaludek    
