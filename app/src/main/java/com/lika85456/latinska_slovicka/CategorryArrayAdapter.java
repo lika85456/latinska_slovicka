@@ -57,9 +57,9 @@ class CategorryArrayAdapter extends ArrayAdapter<Category> {
                 property.selected = !property.selected;
                 LinearLayout ln = (LinearLayout) v.findViewById(R.id.main_lin_layout);
                 if(property.selected==true)
-                ln.setBackgroundColor(ResourcesCompat.getColor(context.getResources(),R.color.c_background_selected,null));
+                ln.setBackgroundColor(ResourcesCompat.getColor(context.getResources(),R.color.colorLight,null));
                 else
-                ln.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.c_background, null));
+                ln.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.white, null));
 
             }
         });

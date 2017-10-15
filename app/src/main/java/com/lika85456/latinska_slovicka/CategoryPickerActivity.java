@@ -21,7 +21,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
         final Context ctx = getApplicationContext();
-        //Take from intent to what activity i should go
+        //Take from intent to what activity should be run
         final Intent main_intent = getIntent();
 
 

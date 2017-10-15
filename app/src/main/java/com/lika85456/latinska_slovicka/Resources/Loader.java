@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +53,7 @@ public class Loader {
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            Log.d("ERROL",e.toString());
         }
 
         return null;
@@ -70,7 +71,15 @@ public class Loader {
     public static String[] LoadText(int resourceId) {
         // The InputStream opens the resourceId and sends it to the buffer
         InputStream is = Global.main_activity_context.getResources().openRawResource(resourceId);
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = null;
+        try
+        {
+            br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-16")));
+        }
+        catch(Exception e)
+        {
+            Log.d("ERROR",e.toString());
+        }
         String readLine = null;
         ArrayList<String> s = new ArrayList<String>();
         try {

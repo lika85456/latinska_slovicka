@@ -3,8 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="31pt"
     android:clickable="true"
-    android:background="@color/c_background"
-    android:id="@+id/main_lin_layout">
+    android:id="@+id/main_lin_layout"
+    android:background="@color/white">
 <LinearLayout
     android:layout_height="30pt"
     android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:gravity="left|center_vertical"
             android:minLines="1"
             android:maxLines="3"
-            android:textColor="@color/c_text_color"
+            android:textColor="@color/text_dark"
             android:textSize="8pt" />
 
         <LinearLayout
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Počet slov:"
                 android:id="@+id/textView2"
-                android:textColor="@color/c_text_color"
+                android:textColor="@color/text_dark"
                 android:layout_gravity="center" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.1"
                 android:gravity="center_vertical"
-                android:textColor="@color/c_text_color" />
+                android:textColor="@color/text_dark" />
 
         </LinearLayout>
 

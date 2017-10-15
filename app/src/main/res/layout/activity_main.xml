@@ -18,14 +18,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/text_top_bar"
+            android:textColor="@color/text_white"
             android:text="Latinská slovíčka"
             android:textAlignment="center"
             android:textSize="10pt"
             android:id="@+id/nadpis"
             android:paddingLeft="0pt"
             android:paddingTop="5pt"
-            android:textStyle="bold" />
+            android:layout_marginTop="3dp" />
         <!-- <TextView
              android:layout_width="10pt"
              android:layout_height="match_parent"
@@ -75,21 +75,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Procvičování"
-                android:textColor="@color/mujText"
-                android:background="@color/mujPodkladPrvku"
-                android:textSize="10pt"
+                android:textColor="@color/button_text"
+                android:background="@drawable/buttonshape"
                 android:id="@+id/main_menu_button_procvicovani"
                 android:onClick="ProcvicovaniOnClick"
                 android:layout_marginLeft="10pt"
-                android:layout_marginRight="10pt" />
+                android:layout_marginRight="10pt"
+                android:textSize="17dp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textColor="@color/mujText"
-                android:background="@color/mujPodkladPrvku"
-                android:textSize="10pt"
+                android:textColor="@color/button_text"
+                android:background="@drawable/buttonshape"
+                android:textSize="17dp"
                 android:id="@+id/main_menu_button_test"
                 android:onClick="TestOnClick"
                 android:layout_marginLeft="10pt"
@@ -100,9 +100,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nastavení"
-                android:textColor="@color/mujText"
-                android:background="@color/mujPodkladPrvku"
-                android:textSize="10pt"
+                android:textColor="@color/button_text"
+                android:background="@drawable/buttonshape"
+                android:textSize="17dp"
                 android:id="@+id/main_menu_button_nastaveni"
                 android:onClick="NastaveniOnClick"
                 android:layout_marginTop="5pt"

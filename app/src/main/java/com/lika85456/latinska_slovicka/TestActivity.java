@@ -49,6 +49,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     public boolean processingClick = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +69,11 @@ public class TestActivity extends AppCompatActivity {
             size+=categoriesA[i].getNumberOfWords();
         }
         words = new Word[size];
+        int lastIndex = 0;
         for(int i=0;i<categoriesA.length;i++)
         {
-            System.arraycopy(categoriesA[i].words,0,words,0,categoriesA[i].words.length);
+            System.arraycopy(categoriesA[i].words,0,words,lastIndex,categoriesA[i].words.length);
+            lastIndex = categoriesA[i].words.length;
             shuffleArray(words);
         }
 

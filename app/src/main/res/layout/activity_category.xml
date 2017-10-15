@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lika85456.latinska_slovicka.CategoryActivity"
-    android:background="@color/category_picker_background">
+    android:background="@color/background">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Procvičování"
             android:id="@+id/textView"
-            android:textColor="@color/text_top_bar"
+            android:textColor="@color/text_white"
             android:gravity="center_vertical"
             android:layout_marginLeft="10pt" />
     </LinearLayout>
@@ -84,7 +84,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:textSize="35dp"
-                    android:textColor="@color/category_background" />
+                    android:textColor="@color/text_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:textSize="25dp"
-                    android:textColor="@color/latinska_slovicka_text_color" />
+                    android:textColor="@color/text_light" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -126,8 +126,8 @@
                         android:text="Zpět"
                         android:id="@+id/button_back"
                         android:layout_marginLeft="15dp"
-                        android:background="@color/colorPrimary"
-                        android:textColor="@color/c_text_color" />
+                        android:background="@color/button_background"
+                        android:textColor="@color/button_text" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -143,8 +143,8 @@
                         android:id="@+id/button_next"
                         android:layout_gravity="right"
                         android:layout_marginRight="15dp"
-                        android:background="@color/colorPrimary"
-                        android:textColor="@color/c_text_color" />
+                        android:background="@color/button_background"
+                        android:textColor="@color/button_text" />
                 </LinearLayout>
             </LinearLayout>
 

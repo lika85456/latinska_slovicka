@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#002538</color>
-    <color name="colorPrimaryDark">#181818</color>
-    <color name="colorAccent">#2f35da</color>
+    <color name="colorPrimary">#0277bd</color>
+    <color name="colorPrimaryDark">#004c8c</color>
+    <color name="colorLight">#58a5f0</color>
 
-    <color name="mujText">#e79613</color>
-    <color name="mujPodklad">#000</color>
-    <color name="mujPodkladPrvku">#001e38</color>
-    <color name="text_top_bar">#ffaf38</color>
-    <color name="latinska_slovicka_text_color">#130066</color>
+    <color name="colorAccent">#0367f4</color>
 
-    <color name="category_background">#001e38</color>
-
-    <color name="category_picker_background">#cccccc</color>
-    <color name="c_background">#002538</color>
-    <color name="c_background_selected">#005580</color>
-    <color name="c_text_color">#e79613</color>
+    <color name="background">#eee</color>
+    <color name="text_dark">#000</color>
+    <color name="text_light">#444</color>
+    <color name="text_white">#EEE</color>
+    <color name="button_text">#eeeeee</color>
+    <color name="button_background">#03a9f4</color>
+    <color name="top_bar_text">#EEE</color>
+    <color name="white">#CCC</color>
 </resources>

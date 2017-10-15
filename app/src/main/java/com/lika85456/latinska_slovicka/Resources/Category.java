@@ -48,7 +48,7 @@ public class Category{
 
     public void init()
     {
-        //PARSING FILES SHITS
+        //PARSING FILES
         String[] lines = Loader.loadFile("slovicka");
         ArrayList<Word> temp = new ArrayList<Word>();
 
@@ -120,7 +120,7 @@ public class Category{
             if(line.contains("-"))
             {
                 String[] sslited = line.split("-");
-                for(int i = Integer.parseInt(sslited[0]);i<Integer.parseInt(sslited[1]);i++)
+                for(int i = Integer.parseInt(sslited[0]);i<Integer.parseInt(sslited[1])+1;i++)
                 {
                     ar.add(String.valueOf(i));
                 }

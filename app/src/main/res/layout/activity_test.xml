@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TestActivity"
-    android:background="@color/category_picker_background">
+    android:background="@color/background">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Test"
             android:id="@+id/textViewdfsghwer"
-            android:textColor="@color/text_top_bar"
+            android:textColor="@color/top_bar_text"
             android:gravity="center_vertical"
             android:layout_marginLeft="10pt" />
     </LinearLayout>
@@ -84,7 +84,7 @@
                     android:id="@+id/textView"
                     android:layout_gravity="center"
                     android:textSize="35dp"
-                    android:textColor="@color/c_background"
+                    android:textColor="@color/text_dark"
                     android:gravity="top|center_horizontal" />
             </LinearLayout>
 
@@ -186,7 +186,9 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -266,8 +268,8 @@
                         android:layout_height="wrap_content"
                         android:text="Kategorie"
                         android:id="@+id/buttonKategorie"
-                        android:background="@color/mujPodkladPrvku"
-                        android:textColor="@color/mujText"
+                        android:background="@color/button_background"
+                        android:textColor="@color/text_dark"
                         android:layout_weight="0"
                         android:layout_marginLeft="5dp"
                         android:layout_marginBottom="5dp"

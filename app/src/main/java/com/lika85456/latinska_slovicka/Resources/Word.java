@@ -16,4 +16,10 @@ public class Word {
         this.la = la;
         this.icon = icon;
     }
+    Word(Word w)
+    {
+        cz = w.cz;
+        la = w.la;
+        icon = w.icon;
+    }
 }

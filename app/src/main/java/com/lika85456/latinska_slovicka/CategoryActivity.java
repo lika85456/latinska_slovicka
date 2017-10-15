@@ -44,10 +44,13 @@ public class CategoryActivity extends AppCompatActivity {
             size+=categoriesA[i].getNumberOfWords();
         }
         words = new Word[size];
+        int lastIndex = 0;
         for(int i=0;i<categoriesA.length;i++)
         {
-            System.arraycopy(categoriesA[i].words,0,words,0,categoriesA[i].words.length);
+            System.arraycopy(categoriesA[i].words,0,words,lastIndex,categoriesA[i].words.length);
+            lastIndex = categoriesA[i].words.length;
         }
+
 
         //Onclick events
         Button button_back = (Button) findViewById(R.id.button_back);

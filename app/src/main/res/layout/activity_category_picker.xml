@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lika85456.latinska_slovicka.CategoryPickerActivity"
-    android:background="@color/category_picker_background">
+    android:background="@color/background">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Kategorie"
             android:id="@+id/textView"
-            android:textColor="@color/text_top_bar"
+            android:textColor="@color/top_bar_text"
             android:gravity="center_vertical"
             android:layout_marginLeft="10pt" />
 
@@ -51,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:text="Pokračovat"
                 android:id="@+id/button_continue"
-                android:textColor="@color/c_text_color"
-                android:background="@color/category_background"
+                android:textColor="@color/top_bar_text"
+                android:background="@color/colorPrimary"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp" />
