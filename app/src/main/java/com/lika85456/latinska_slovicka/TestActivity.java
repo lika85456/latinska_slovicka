@@ -73,10 +73,10 @@ public class TestActivity extends AppCompatActivity {
         for(int i=0;i<categoriesA.length;i++)
         {
             System.arraycopy(categoriesA[i].words,0,words,lastIndex,categoriesA[i].words.length);
-            lastIndex = categoriesA[i].words.length;
-            shuffleArray(words);
-        }
+            lastIndex += categoriesA[i].words.length;
 
+        }
+        shuffleArray(words);
         //Views init
         imageView = (ImageView)findViewById(R.id.imageView);
         wordView = (TextView) findViewById(R.id.textView);
@@ -182,13 +182,14 @@ public class TestActivity extends AppCompatActivity {
     public void loadNextWord(int lastWordID)
     {
 
-        if(lastWordID+1 == words.length)
+        /*if(lastWordID+1 == words.length)
         {
             Intent intent;
             intent = new Intent(this, TestResultActivity.class);
             startActivity(intent);
             return;
         }
+        */
         processingClick = false;
         b1.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
         b2.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
@@ -197,11 +198,14 @@ public class TestActivity extends AppCompatActivity {
         Random r = new Random();
 
         Boolean isCz = r.nextBoolean();
-
+        if(lastWordID+1==words.length)
+        {
+            lastWordID = -1;
+        }
         int id = lastWordID+1;
         this.lastWordIDD = id;
         Word w = words[id];
-
+        if(w.icon!=null || w!=null)
         imageView.setImageDrawable(w.icon);
         if(isCz)
             wordView.setText(w.la);

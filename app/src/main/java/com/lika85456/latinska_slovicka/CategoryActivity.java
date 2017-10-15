@@ -48,7 +48,7 @@ public class CategoryActivity extends AppCompatActivity {
         for(int i=0;i<categoriesA.length;i++)
         {
             System.arraycopy(categoriesA[i].words,0,words,lastIndex,categoriesA[i].words.length);
-            lastIndex = categoriesA[i].words.length;
+            lastIndex += categoriesA[i].words.length;
         }
 
 
