@@ -20,6 +20,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
+        Global.main_activity_context = getApplicationContext();
         final Context ctx = getApplicationContext();
         //Take from intent to what activity should be run
         final Intent main_intent = getIntent();
@@ -39,7 +40,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
                 if(main_intent.getIntExtra("goto",0)==0)
                     intent = new Intent(v.getContext(), CategoryActivity.class);
                 else
-                    intent = new Intent(v.getContext(), TestActivity.class);
+                    intent = new Intent(v.getContext(), TestPickerActivity.class);
                 String toPass="";
                 Boolean canContinue = false;
                 for(int i=0;i<categories.size();i++)

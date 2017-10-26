@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lika85456.latinska_slovicka">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
@@ -28,7 +28,8 @@
             android:name=".CategoryPickerActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".TestResultActivity"></activity>
+        <activity android:name=".TestResultActivity" />
+        <activity android:name=".TestPickerActivity"></activity>
     </application>
 
 </manifest>

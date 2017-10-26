@@ -29,7 +29,7 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-
+        Global.main_activity_context = getApplicationContext();
 
         ArrayList<Category> categories = new ArrayList<Category>();
         String toParse = getIntent().getStringExtra("array");

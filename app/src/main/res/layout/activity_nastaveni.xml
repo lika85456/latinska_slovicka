@@ -17,7 +17,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Nastavení"
             android:id="@+id/textView"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_white"
             android:gravity="center_vertical"
             android:layout_marginLeft="10pt" />
     </LinearLayout>

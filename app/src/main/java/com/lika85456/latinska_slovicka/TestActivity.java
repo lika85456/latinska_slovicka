@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -54,6 +55,14 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        Global.main_activity_context = getApplicationContext();
+        /*intent.putExtra("pocetSlovicek",pocetSlovicek.getText());
+        intent.putExtra("timer",sTimer.isChecked());
+        intent.putExtra("result",sResult.isChecked());
+        */
+
+
+
         //Get selected categories
         ArrayList<Category> categories = new ArrayList<Category>();
         String toParse = getIntent().getStringExtra("array");
@@ -77,6 +86,16 @@ public class TestActivity extends AppCompatActivity {
 
         }
         shuffleArray(words);
+
+        try {
+            this.MAX_WORDS_IN_ROUND = Integer.parseInt(getIntent().getStringExtra("pocetSlovicek"));
+        }
+        catch(Exception e)
+        {
+            Log.e("ERROR",e.toString());
+            this.MAX_WORDS_IN_ROUND = words.length;
+        }
+
         //Views init
         imageView = (ImageView)findViewById(R.id.imageView);
         wordView = (TextView) findViewById(R.id.textView);
@@ -198,7 +217,7 @@ public class TestActivity extends AppCompatActivity {
         Random r = new Random();
 
         Boolean isCz = r.nextBoolean();
-        if(lastWordID+1==words.length)
+        if(lastWordID+1==MAX_WORDS_IN_ROUND)
         {
             lastWordID = -1;
         }
@@ -245,7 +264,7 @@ public class TestActivity extends AppCompatActivity {
         //textViewSuccessAll.setText("Vaše celková úspěšnost: "+tryRight+"/"+tryTotal+" = "+(int)(procenta*100f)+"%");
         textViewLoader.setText((int)(procenta*100)+"%");
         textViewNLoader.setText(tryRight+"/"+tryTotal);
-        textViewProgress.setText((id+1)+"/"+words.length);
+        textViewProgress.setText((id+1)+"/"+MAX_WORDS_IN_ROUND);
 
         LinearLayout.LayoutParams Green = new LinearLayout.LayoutParams(
                 0,
