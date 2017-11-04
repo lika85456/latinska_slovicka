@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.lika85456.latinska_slovicka.Resources.Category;
 import com.lika85456.latinska_slovicka.Resources.Word;
 
-import java.util.ArrayList;
-
 public class CategoryActivity extends AppCompatActivity {
 
     public int word_id=0;
@@ -31,14 +29,9 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         Global.main_activity_context = getApplicationContext();
 
-        ArrayList<Category> categories = new ArrayList<Category>();
         String toParse = getIntent().getStringExtra("array");
-        String[] toParseA = toParse.split("€");
-        for(int i=0;i<toParseA.length;i++)
-        {
-            categories.add(new Category(toParseA[i]));
-        }
-        Category[] categoriesA = categories.toArray(new Category[0]);
+        Category[] categoriesA = Category.makeArrayFromString(toParse);
+
         int size = 0;
         for(int i = 0;i<categoriesA.length;i++){
             size+=categoriesA[i].getNumberOfWords();

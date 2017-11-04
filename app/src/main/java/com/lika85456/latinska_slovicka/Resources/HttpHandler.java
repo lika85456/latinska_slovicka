@@ -1,6 +1,7 @@
 package com.lika85456.latinska_slovicka.Resources;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -14,18 +15,27 @@ import java.net.URL;
  * Created by lika85456 on 24.10.2017.
  */
 public class HttpHandler {
-
-    public static void getRequest(String urls,Context ctx)
+    public String response = null;
+    public Context context;
+    public String getRequest(String urls,Context ctx)
     {
+        this.context = ctx;
         try {
-            String response = doHttpUrlConnectionAction(urls);
+            new GetUrlContentTask(this).execute(urls);
+            int totalWaitTime = 5000;
+            int time = 0;
+            while(response==null || time<totalWaitTime) {
+                time+=10;
+                Thread.sleep(10);
+            }
             Log.i("JE TO TU",response);
+            return response;
         }
         catch(Exception e)
         {
             Log.d("Erol",e.toString());
         }
-
+    return null;
     }
 
     private static String getStringFromInputStream(InputStream is) {
@@ -56,65 +66,54 @@ public class HttpHandler {
         return sb.toString();
 
     }
-
-
-    private static String doHttpUrlConnectionAction(String desiredUrl)
-            throws Exception
+    public void ddo(String s)
     {
-        URL url = null;
-        BufferedReader reader = null;
-        StringBuilder stringBuilder;
-
-        try
-        {
-            // create the HttpURLConnection
-            url = new URL(desiredUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // just want to do an HTTP GET here
-            connection.setRequestMethod("GET");
-
-            // uncomment this if you want to write output to this url
-            //connection.setDoOutput(true);
-
-            // give it 15 seconds to respond
-            connection.setReadTimeout(2000);
-            connection.connect();
-
-            // read the output from the server
-            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            stringBuilder = new StringBuilder();
-
-            String line = null;
-            while ((line = reader.readLine()) != null)
-            {
-                stringBuilder.append(line + "\n");
-            }
-            return stringBuilder.toString();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            throw e;
-        }
-        finally
-        {
-            // close the reader; this can throw an exception too, so
-            // wrap it in another try/catch block.
-            if (reader != null)
-            {
-                try
-                {
-                    reader.close();
-                }
-                catch (IOException ioe)
-                {
-                    ioe.printStackTrace();
-                }
-            }
-        }
+        //if(s==null)
+        this.response = s;
     }
+
+
 
 
 }
 
+class GetUrlContentTask extends AsyncTask<String, Integer, String> {
+    private HttpHandler h;
+    public GetUrlContentTask(HttpHandler h)
+    {
+        super();
+        this.h = h;
+    }
+
+    protected String doInBackground(String... urls) {
+        try
+        {
+            URL url = new URL(urls[0]);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(true);
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            connection.connect();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-16LE"));
+            String content = "", line;
+            while ((line = rd.readLine()) != null) {
+                content += line + "\n";
+            }
+            this.h.ddo(content);
+            return content;
+        }
+        catch(Exception e)
+        {
+            return e.toString();
+        }
+
+    }
+
+    protected void onProgressUpdate(Integer... progress) {
+    }
+
+    protected void onPostExecute(String result) {
+        //h.ddo(result);
+    }
+}

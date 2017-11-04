@@ -20,7 +20,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
-        Global.main_activity_context = getApplicationContext();
+        Global.main_activity_context = this;
         final Context ctx = getApplicationContext();
         //Take from intent to what activity should be run
         final Intent main_intent = getIntent();

@@ -31,17 +31,18 @@ import java.util.ArrayList;
 public class Loader {
     public static String[] loadFile(String path) {
 
-        int resId;
+        int resId=-1;
         try {
             resId = R.raw.class.getField(path).getInt(null);
-            return Loader.LoadText(resId);
+
         }
         catch(Exception e)
         {
             Log.d("Exception",e.toString());
+
         }
 
-        return null;
+        return Loader.LoadText(resId);
     }
 
     public static Drawable loadDrawable(String path)
@@ -69,6 +70,8 @@ public class Loader {
     }
 
     public static String[] LoadText(int resourceId) {
+        if(resourceId==-1)
+            return null;
         // The InputStream opens the resourceId and sends it to the buffer
         InputStream is = Global.main_activity_context.getResources().openRawResource(resourceId);
         BufferedReader br = null;
