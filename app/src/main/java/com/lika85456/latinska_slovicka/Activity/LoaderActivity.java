@@ -14,13 +14,18 @@ public class LoaderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loader);
-        Global.main_activity_context = this;
-
-        CategoryManager categoryManager = new CategoryManager(this);
-        categoryManager.update();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("array", categoryManager.toString());
-        startActivity(intent);
+        
+        //Update
+        new  Updater(){
+            public void run(){
+                //Jump to MainActivity
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("array", categoryManager.toString());
+                startActivity(intent);
+            }
+        }.start();
+        
+        
     }
 
 
