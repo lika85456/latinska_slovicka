@@ -1,4 +1,4 @@
-package com.lika85456.latinska_slovicka;
+package com.lika85456.latinska_slovicka.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
+import com.lika85456.latinska_slovicka.Resources.CategoryManager;
 import com.lika85456.latinska_slovicka.Resources.Word;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TestActivity extends AppCompatActivity {
@@ -51,6 +53,17 @@ public class TestActivity extends AppCompatActivity {
 
     public boolean processingClick = false;
 
+    public static void shuffleArray(Word[] ar) {
+        Random rnd = new Random();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            Word a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,17 +74,7 @@ public class TestActivity extends AppCompatActivity {
         intent.putExtra("result",sResult.isChecked());
         */
 
-
-
-        //Get selected categories
-        ArrayList<Category> categories = new ArrayList<Category>();
-        String toParse = getIntent().getStringExtra("array");
-        String[] toParseA = toParse.split("€");
-        for(int i=0;i<toParseA.length;i++)
-        {
-            categories.add(new Category(toParseA[i]));
-        }
-        Category[] categoriesA = categories.toArray(new Category[0]);
+        Category[] categoriesA = CategoryManager.makeWordIDArrayFromString(getIntent().getStringExtra("array"));
         //load them to public Word array
         int size = 0;
         for(int i = 0;i<categoriesA.length;i++){
@@ -306,17 +309,5 @@ public class TestActivity extends AppCompatActivity {
     public int randomFromTo(int minimum,int maximum)
     {
         return minimum + (int)(Math.random() * (maximum - minimum));
-    }
-
-    public static void shuffleArray(Word[] ar)
-    {
-        Random rnd = new Random();
-        for (int i = ar.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-            // Simple swap
-            Word a = ar[index];
-            ar[index] = ar[i];
-            ar[i] = a;
-        }
     }
 }

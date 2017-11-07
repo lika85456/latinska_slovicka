@@ -17,26 +17,6 @@ import java.net.URL;
 public class HttpHandler {
     public String response = null;
     public Context context;
-    public String getRequest(String urls,Context ctx)
-    {
-        this.context = ctx;
-        try {
-            new GetUrlContentTask(this).execute(urls);
-            int totalWaitTime = 5000;
-            int time = 0;
-            while(response==null || time<totalWaitTime) {
-                time+=10;
-                Thread.sleep(10);
-            }
-            Log.i("JE TO TU",response);
-            return response;
-        }
-        catch(Exception e)
-        {
-            Log.d("Erol",e.toString());
-        }
-    return null;
-    }
 
     private static String getStringFromInputStream(InputStream is) {
 
@@ -66,6 +46,28 @@ public class HttpHandler {
         return sb.toString();
 
     }
+
+    public String getRequest(String urls,Context ctx)
+    {
+        this.context = ctx;
+        try {
+            new GetUrlContentTask(this).execute(urls);
+            int totalWaitTime = 5000;
+            int time = 0;
+            while(response==null || time<totalWaitTime) {
+                time+=10;
+                Thread.sleep(10);
+            }
+            Log.i("JE TO TU",response);
+            return response;
+        }
+        catch(Exception e)
+        {
+            Log.d("Erol",e.toString());
+        }
+    return null;
+    }
+
     public void ddo(String s)
     {
         //if(s==null)
@@ -101,6 +103,7 @@ class GetUrlContentTask extends AsyncTask<String, Integer, String> {
                 content += line + "\n";
             }
             this.h.ddo(content);
+            connection.getInputStream().close();
             return content;
         }
         catch(Exception e)

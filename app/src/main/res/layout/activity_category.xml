@@ -3,148 +3,148 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lika85456.latinska_slovicka.CategoryActivity"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".Activity.CategoryActivity">
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/colorPrimary"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Procvičování"
-            android:id="@+id/textView"
-            android:textColor="@color/text_white"
+            android:layout_marginLeft="10pt"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10pt" />
+            android:text="Procvičování"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_white" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="4"
                 android:layout_marginTop="5dp"
+                android:layout_weight="4"
                 android:adjustViewBounds="true" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_weight="4"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView_latin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Latinsky"
-                    android:id="@+id/textView_latin"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
-                    android:textSize="35dp"
-                    android:textColor="@color/text_dark" />
+                    android:text="Latinsky"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/text_dark"
+                    android:textSize="35dp" />
 
                 <TextView
+                    android:id="@+id/textView_czech"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Česky"
-                    android:id="@+id/textView_czech"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:textSize="25dp"
-                    android:textColor="@color/text_light" />
+                    android:text="Česky"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/text_light"
+                    android:textSize="25dp" />
 
                 <Button
+                    android:id="@+id/button_play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="přehrát"
-                    android:id="@+id/button_play"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="25dp"
-                    android:enabled="false" />
+                    android:enabled="false"
+                    android:text="přehrát" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_weight="0">
+                android:layout_weight="0"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/button_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Zpět"
-                        android:id="@+id/button_back"
                         android:layout_marginLeft="15dp"
                         android:background="@color/button_background"
+                        android:text="Zpět"
                         android:textColor="@color/button_text" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/button_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Další"
-                        android:id="@+id/button_next"
                         android:layout_gravity="right"
                         android:layout_marginRight="15dp"
                         android:background="@color/button_background"
+                        android:text="Další"
                         android:textColor="@color/button_text" />
                 </LinearLayout>
             </LinearLayout>

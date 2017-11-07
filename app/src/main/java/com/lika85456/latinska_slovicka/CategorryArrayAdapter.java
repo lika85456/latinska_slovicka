@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by lika85456 on 06.09.2017.
  */
-class CategorryArrayAdapter extends ArrayAdapter<Category> {
+public class CategorryArrayAdapter extends ArrayAdapter<Category> {
     private final Context context;
     private List<Category> CategoryProperties;
 

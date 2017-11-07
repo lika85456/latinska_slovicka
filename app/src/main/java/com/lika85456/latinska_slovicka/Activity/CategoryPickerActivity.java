@@ -1,4 +1,4 @@
-package com.lika85456.latinska_slovicka;
+package com.lika85456.latinska_slovicka.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.lika85456.latinska_slovicka.CategorryArrayAdapter;
+import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
+import com.lika85456.latinska_slovicka.Resources.CategoryManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CategoryPickerActivity extends AppCompatActivity {
 
@@ -27,7 +32,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
 
 
         //Some crap setting listView and its categories
-        final ArrayList<Category> categories = Category.getCategories(this);
+        final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(CategoryManager.makeWordIDArrayFromString(getIntent().getStringExtra("array"))));
         ArrayAdapter<Category> adapter = new CategorryArrayAdapter(this, 0, categories);
         ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);

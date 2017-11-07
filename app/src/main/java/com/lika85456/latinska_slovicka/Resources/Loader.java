@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
@@ -29,8 +30,20 @@ import java.util.ArrayList;
  * loadFile("category.txt");
  */
 public class Loader {
-    public static String[] loadFile(String path) {
+    public static String[] files = null;
 
+    //TODO IF FILE DOESNT EXISTS, dont load it omg
+    private static void init() {
+        ArrayList<String> temp = new ArrayList<String>();
+        Field[] fields = R.raw.class.getFields();
+        for (int count = 0; count < fields.length; count++) {
+            temp.add(fields[count].getName());
+        }
+        Loader.files = temp.toArray(new String[0]);
+    }
+
+    public static String[] loadFile(String path) {
+        //if(files==null) init();
         int resId=-1;
         try {
             resId = R.raw.class.getField(path).getInt(null);
@@ -41,12 +54,15 @@ public class Loader {
             Log.d("Exception",e.toString());
 
         }
-
-        return Loader.LoadText(resId);
+        if (0 < resId)
+            return Loader.LoadText(resId);
+        else
+            return null;
     }
 
     public static Drawable loadDrawable(String path)
     {
+        //if(files==null) init();
         int resId;
         try {
             resId = R.raw.class.getField(path).getInt(null);
@@ -62,6 +78,7 @@ public class Loader {
 
     public static Drawable LoadDrawable(int id)
     {
+        //if(files==null) init();
         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
             return Global.main_activity_context.getResources().getDrawable(id, Global.main_activity_context.getTheme());
         } else {
@@ -70,6 +87,7 @@ public class Loader {
     }
 
     public static String[] LoadText(int resourceId) {
+        //if(files==null) init();
         if(resourceId==-1)
             return null;
         // The InputStream opens the resourceId and sends it to the buffer
@@ -82,6 +100,7 @@ public class Loader {
         catch(Exception e)
         {
             Log.d("ERROR",e.toString());
+            return null;
         }
         String readLine = null;
         ArrayList<String> s = new ArrayList<String>();
@@ -96,7 +115,7 @@ public class Loader {
             br.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("Erol", e.toString());
         }
         return s.toArray(new String[0]);
     }

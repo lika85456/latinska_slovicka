@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -12,22 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".TestActivity"
+            android:name=".Activity.TestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NastaveniActivity"
+            android:name=".Activity.NastaveniActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CategoryPickerActivity"
+            android:name=".Activity.CategoryPickerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".TestResultActivity" />
-        <activity android:name=".TestPickerActivity" />
-        <activity android:name=".LoaderActivity">
+        <activity android:name=".Activity.CategoryActivity" />
+        <activity android:name=".Activity.TestResultActivity" />
+        <activity android:name=".Activity.TestPickerActivity" />
+        <activity android:name=".Activity.LoaderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

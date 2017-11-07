@@ -1,16 +1,16 @@
-package com.lika85456.latinska_slovicka;
+package com.lika85456.latinska_slovicka.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
+
 public class MainActivity extends AppCompatActivity {
 
-    public int coins = 0;
-    public String nickname = "Guess";
-
-
+    public String categoriesInString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Global.main_activity_context = this;
+        categoriesInString = getIntent().getStringExtra("array");
+
 
 
 
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto",0);
-
+        intent.putExtra("array", this.categoriesInString);
 
         startActivity(intent);
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto",1);
+        intent.putExtra("array", this.categoriesInString);
         startActivity(intent);
 
 

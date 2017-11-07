@@ -1,4 +1,4 @@
-package com.lika85456.latinska_slovicka;
+package com.lika85456.latinska_slovicka.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+
+import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
 
 /**
  * author: lika85456

@@ -3,22 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lika85456.latinska_slovicka.NastaveniActivity">
+    tools:context=".Activity.NastaveniActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nastavení"
-            android:id="@+id/textView"
-            android:textColor="@color/text_white"
+            android:layout_marginLeft="10pt"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10pt" />
+            android:text="Nastavení"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_white" />
     </LinearLayout>
 </RelativeLayout>

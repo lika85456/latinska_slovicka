@@ -1,4 +1,4 @@
-package com.lika85456.latinska_slovicka;
+package com.lika85456.latinska_slovicka.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,20 +7,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lika85456.latinska_slovicka.Global;
+import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
+import com.lika85456.latinska_slovicka.Resources.CategoryManager;
 import com.lika85456.latinska_slovicka.Resources.Word;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    public int word_id=0;
-
+    public final int BACK = 0;
+    public final int NEXT = 1;
+    public int word_id = 0;
     public ImageView imageView;
     public TextView latinView;
     public TextView czechView;
-
-    public final int BACK = 0;
-    public final int NEXT = 1;
-
     public Word[] words;
 
     @Override
@@ -30,7 +30,7 @@ public class CategoryActivity extends AppCompatActivity {
         Global.main_activity_context = getApplicationContext();
 
         String toParse = getIntent().getStringExtra("array");
-        Category[] categoriesA = Category.makeArrayFromString(toParse);
+        Category[] categoriesA = CategoryManager.makeWordIDArrayFromString(toParse);
 
         int size = 0;
         for(int i = 0;i<categoriesA.length;i++){
