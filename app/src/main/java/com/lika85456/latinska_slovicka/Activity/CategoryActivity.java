@@ -7,10 +7,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lika85456.latinska_slovicka.Global;
 import com.lika85456.latinska_slovicka.R;
-import com.lika85456.latinska_slovicka.Resources.Category;
-import com.lika85456.latinska_slovicka.Resources.CategoryManager;
+import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
 import com.lika85456.latinska_slovicka.Resources.Word;
 
 public class CategoryActivity extends AppCompatActivity {
@@ -27,21 +25,19 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        Global.main_activity_context = getApplicationContext();
 
         String toParse = getIntent().getStringExtra("array");
-        Category[] categoriesA = CategoryManager.makeWordIDArrayFromString(toParse);
+        CategoryHandler categoryHandler = new CategoryHandler(toParse);
 
         int size = 0;
-        for(int i = 0;i<categoriesA.length;i++){
-            size+=categoriesA[i].getNumberOfWords();
+        for (int i = 0; i < categoryHandler.categories.length; i++) {
+            size += categoryHandler.categories[i].getWordCount();
         }
         words = new Word[size];
         int lastIndex = 0;
-        for(int i=0;i<categoriesA.length;i++)
-        {
-            System.arraycopy(categoriesA[i].words,0,words,lastIndex,categoriesA[i].words.length);
-            lastIndex += categoriesA[i].words.length;
+        for (int i = 0; i < categoryHandler.categories.length; i++) {
+            System.arraycopy(categoryHandler.categories[i].words, 0, words, lastIndex, categoryHandler.categories[i].words.length);
+            lastIndex += categoryHandler.categories[i].words.length;
         }
 
 
@@ -63,7 +59,7 @@ public class CategoryActivity extends AppCompatActivity {
 
 
         //Views init
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
         latinView = (TextView) findViewById(R.id.textView_latin);
         czechView = (TextView) findViewById(R.id.textView_czech);
 
@@ -71,29 +67,23 @@ public class CategoryActivity extends AppCompatActivity {
         loadWord(words[word_id]);
     }
 
-    public void idmove(int moveid)
-    {
-        if(moveid==BACK)
-        {
+    public void idmove(int moveid) {
+        if (moveid == BACK) {
             this.word_id--;
-            if(word_id<0)
-            {
-                word_id = words.length-1;
+            if (word_id < 0) {
+                word_id = words.length - 1;
             }
         }
-        if(moveid==NEXT)
-        {
+        if (moveid == NEXT) {
             this.word_id++;
-            if(word_id>words.length-1)
-            {
+            if (word_id > words.length - 1) {
                 this.word_id = 0;
             }
         }
         loadWord(words[word_id]);
     }
 
-    public void loadWord(Word w)
-    {
+    public void loadWord(Word w) {
         imageView.setImageDrawable(w.icon);
         latinView.setText(w.la);
         czechView.setText(w.cz);

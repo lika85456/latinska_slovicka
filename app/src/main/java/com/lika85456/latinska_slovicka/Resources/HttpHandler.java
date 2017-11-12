@@ -8,45 +8,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
  * Created by lika85456 on 24.10.2017.
  */
+
+/***
+ * This class is helper for httprequests
+ */
 public class HttpHandler {
     public String response = null;
     public Context context;
 
-    private static String getStringFromInputStream(InputStream is) {
-
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return sb.toString();
-
-    }
-
+    /***
+     * @param urls
+     * @param ctx
+     * @return response from server
+     */
     public String getRequest(String urls,Context ctx)
     {
         this.context = ctx;
@@ -65,7 +46,23 @@ public class HttpHandler {
         {
             Log.d("Erol",e.toString());
         }
-    return null;
+        return null;
+    }
+
+    public void saveImage(String imageUrl, String destinationFile) throws IOException {
+        URL url = new URL(imageUrl);
+        InputStream is = url.openStream();
+        OutputStream os = this.context.openFileOutput(destinationFile, Context.MODE_PRIVATE);
+
+        byte[] b = new byte[2048];
+        int length;
+
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+
+        is.close();
+        os.close();
     }
 
     public void ddo(String s)
@@ -120,3 +117,7 @@ class GetUrlContentTask extends AsyncTask<String, Integer, String> {
         //h.ddo(result);
     }
 }
+
+
+
+

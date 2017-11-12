@@ -11,10 +11,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lika85456.latinska_slovicka.CategorryArrayAdapter;
-import com.lika85456.latinska_slovicka.Global;
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
-import com.lika85456.latinska_slovicka.Resources.CategoryManager;
+import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,45 +25,43 @@ public class CategoryPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
-        Global.main_activity_context = this;
         final Context ctx = getApplicationContext();
         //Take from intent to what activity should be run
         final Intent main_intent = getIntent();
 
+        WordHandler.loadWords(this);
 
         //Some crap setting listView and its categories
-        final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(CategoryManager.makeWordIDArrayFromString(getIntent().getStringExtra("array"))));
+        CategoryHandler categoryHandler = new CategoryHandler(getIntent().getStringExtra("array"));
+        final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(categoryHandler.categories));
         ArrayAdapter<Category> adapter = new CategorryArrayAdapter(this, 0, categories);
         ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
 
-        Button btn = (Button)findViewById(R.id.button_continue);
+        Button btn = (Button) findViewById(R.id.button_continue);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                if(main_intent.getIntExtra("goto",0)==0)
+                if (main_intent.getIntExtra("goto", 0) == 0)
                     intent = new Intent(v.getContext(), CategoryActivity.class);
                 else
                     intent = new Intent(v.getContext(), TestPickerActivity.class);
-                String toPass="";
+                String toPass = "";
                 Boolean canContinue = false;
-                for(int i=0;i<categories.size();i++)
-                {
-                    if(categories.get(i).selected==true)
-                    {
-                        toPass+=(categories.get(i)).toString()+"€";
+                for (int i = 0; i < categories.size(); i++) {
+                    if (categories.get(i).selected == true) {
+                        toPass += (categories.get(i)).toString() + "\n";
                         canContinue = true;
                     }
                 }
-                if(canContinue==false)
-                {
-                    Toast.makeText(ctx,"Před pokračováním prosím zvolte kategorii.",Toast.LENGTH_LONG).show();
+                if (canContinue == false) {
+                    Toast.makeText(ctx, "Před pokračováním prosím zvolte kategorii.", Toast.LENGTH_LONG).show();
 
                     return;
                 }
 
-                intent.putExtra("array",toPass);
+                intent.putExtra("array", toPass);
                 v.getContext().startActivity(intent);
             }
         });

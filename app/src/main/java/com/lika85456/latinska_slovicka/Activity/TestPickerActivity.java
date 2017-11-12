@@ -13,7 +13,7 @@ import com.lika85456.latinska_slovicka.R;
 
 /**
  * author: lika85456
- *
+ * <p/>
  * Test settings
  */
 public class TestPickerActivity extends AppCompatActivity {
@@ -24,10 +24,10 @@ public class TestPickerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_picker);
         Global.main_activity_context = getApplicationContext();
 
-        Button btnStart = (Button)findViewById(R.id.buttonStart);
-        final EditText pocetSlovicek = (EditText)findViewById(R.id.editPocetSlovicek);
-        final Switch sTimer = (Switch)findViewById(R.id.switchTimer);
-        final Switch sResult = (Switch)findViewById(R.id.switchResult);
+        Button btnStart = (Button) findViewById(R.id.buttonStart);
+        final EditText pocetSlovicek = (EditText) findViewById(R.id.editPocetSlovicek);
+        final Switch sTimer = (Switch) findViewById(R.id.switchTimer);
+        final Switch sResult = (Switch) findViewById(R.id.switchResult);
 
 
         btnStart.setOnClickListener(new View.OnClickListener() {
@@ -35,15 +35,14 @@ public class TestPickerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 String pocetS = pocetSlovicek.getText().toString();
-                if(pocetS.equals("") || pocetS==null)
-                {
+                if (pocetS.equals("") || pocetS == null) {
                     pocetS = "50";
                 }
-                intent.putExtra("pocetSlovicek",pocetS);
-                intent.putExtra("timer",sTimer.isChecked());
-                intent.putExtra("result",sResult.isChecked());
+                intent.putExtra("pocetSlovicek", pocetS);
+                intent.putExtra("timer", sTimer.isChecked());
+                intent.putExtra("result", sResult.isChecked());
                 String toParse = getIntent().getStringExtra("array");
-                intent.putExtra("array",toParse);
+                intent.putExtra("array", toParse);
                 startActivity(intent);
             }
         });

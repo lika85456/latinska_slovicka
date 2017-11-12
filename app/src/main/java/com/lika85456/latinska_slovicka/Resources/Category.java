@@ -1,56 +1,47 @@
 package com.lika85456.latinska_slovicka.Resources;
 
-import android.graphics.drawable.Drawable;
-
-import java.util.ArrayList;
-
 /**
- * Created by lika85456 on 06.04.2017.
- * Category class, contains array of words
- *
- *
- * STRUCTURE
- * category.txt
- * (ID) Name
- *
- * s(ID).txt
- * (ImageID) CZ|LAT
- *
- * s(ID)_background - background of (ID) category
- *
- * a(0).png = image of word
+ * Category data structure
+ * Created by lika85456 on 08.11.2017.
  */
-public class Category{
-    //Name of the category
+public class Category {
     public String name;
-    //Id of resource with category image
-    public int image;
-    //category id
     public int id;
-    //array of word ids
     public int[] range;
+    public String sRange;
 
-    //indicating if selected in CategoryPickerActivity
-    public Boolean selected = false;
-    //Empty costructor
-    public Category()
+    // for arrayAdapter in categoryPicker
+    public Boolean selected;
 
-    public Category(String name,int id,int[] range)
-    {
+    public Category(int id, String name, int[] range) {
         this.name = name;
         this.id = id;
         this.range = range;
     }
-    public String toString()
-    {
-        return this.name + "|" + this.id + "|" + arrayToString(this.range);
+
+
+    public Category() {
+
     }
 
-    //rreverse of toStrging function
-    public void fromString()
- 
-    public int getNumberOfWords()
-    {
-        return this.range.length;
+    /***
+     * Makes category from string in category.txt
+     *
+     * @param s Line of category.txt
+     */
+    public Category(String s) {
+        String[] splited = s.split("\\|");
+        this.name = splited[0].substring(3);
+        this.id = CategoryHandler.parseInt(CategoryHandler.convertStringToUTF8(splited[0]).substring(0, CategoryHandler.convertStringToUTF8(splited[0]).indexOf(" ")));
+        this.range = CategoryHandler.makeRange(CategoryHandler.convertStringToUTF8(splited[1]));
+        this.sRange = CategoryHandler.convertStringToUTF8(splited[1]);
+    }
+
+    public String toString() {
+        return id + " " + name + "|" + sRange + "\n";
+    }
+
+    public int getWordCount() {
+        return range.length;
     }
 }
