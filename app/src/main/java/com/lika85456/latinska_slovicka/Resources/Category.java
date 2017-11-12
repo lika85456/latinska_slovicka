@@ -11,7 +11,7 @@ public class Category {
     public String sRange;
 
     // for arrayAdapter in categoryPicker
-    public Boolean selected;
+    public Boolean selected = false;
 
     public Category(int id, String name, int[] range) {
         this.name = name;
@@ -31,7 +31,7 @@ public class Category {
      */
     public Category(String s) {
         String[] splited = s.split("\\|");
-        this.name = splited[0].substring(3);
+        this.name = splited[0].substring(splited[0].indexOf(" ") + 1);
         this.id = CategoryHandler.parseInt(CategoryHandler.convertStringToUTF8(splited[0]).substring(0, CategoryHandler.convertStringToUTF8(splited[0]).indexOf(" ")));
         this.range = CategoryHandler.makeRange(CategoryHandler.convertStringToUTF8(splited[1]));
         this.sRange = CategoryHandler.convertStringToUTF8(splited[1]);

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.Resources.Category;
+import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,11 @@ public class CategorryArrayAdapter extends ArrayAdapter<Category> {
         TextView categoryNameText = (TextView) view.findViewById(R.id.categoryName_text);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
-        wordCountText.setText(String.valueOf(property.getNumberOfWords()));
+        wordCountText.setText(String.valueOf(property.getWordCount()));
         categoryNameText.setText(property.name);
 
         //get the image associated with this property
-        imageView.setImageDrawable(property.image);
+        imageView.setImageDrawable(DrawableGetter.getCategoryDrawable(property.id, context));
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)

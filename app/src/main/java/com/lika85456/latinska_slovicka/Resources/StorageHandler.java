@@ -62,7 +62,7 @@ public class StorageHandler {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line);
+                sb.append(line + "\n");
             }
             return sb.toString();
         }
@@ -109,11 +109,9 @@ public class StorageHandler {
         return directory.getAbsolutePath() + "|" + name;
     }
 
-    public Drawable loadImageFromStorage(String path) {
-        String pat = path.substring(0, path.indexOf("|"));
-        String name = path.substring(path.indexOf("|") + 1, path.length());
+    public Drawable loadImageFromStorage(String name) {
         try {
-            File f = new File(pat, name);
+            File f = new File("", name);
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             return new BitmapDrawable(ctx.getResources(), b);
         } catch (FileNotFoundException e) {

@@ -1,6 +1,7 @@
 package com.lika85456.latinska_slovicka.Activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
@@ -12,11 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lika85456.latinska_slovicka.Global;
 import com.lika85456.latinska_slovicka.R;
-import com.lika85456.latinska_slovicka.Resources.Category;
-import com.lika85456.latinska_slovicka.Resources.CategoryManager;
+import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
 import com.lika85456.latinska_slovicka.Resources.Word;
+import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 import java.util.Random;
 
@@ -67,25 +68,30 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        Global.main_activity_context = getApplicationContext();
+
         /*intent.putExtra("pocetSlovicek",pocetSlovicek.getText());
         intent.putExtra("timer",sTimer.isChecked());
         intent.putExtra("result",sResult.isChecked());
         */
 
-        Category[] categoriesA = CategoryManager.makeWordIDArrayFromString(getIntent().getStringExtra("array"));
-        //load them to public Word array
+        String toParse = getIntent().getStringExtra("category");
+        CategoryHandler categoryHandler = new CategoryHandler(toParse);
+
+        WordHandler.loadWords(this);
+
         int size = 0;
-        for (int i = 0; i < categoriesA.length; i++) {
-            size += categoriesA[i].getNumberOfWords();
+        for (int i = 0; i < categoryHandler.categories.length; i++) {
+            size += categoryHandler.categories[i].getWordCount();
         }
         words = new Word[size];
-        int lastIndex = 0;
-        for (int i = 0; i < categoriesA.length; i++) {
-            System.arraycopy(categoriesA[i].words, 0, words, lastIndex, categoriesA[i].words.length);
-            lastIndex += categoriesA[i].words.length;
+        int[] allRange = new int[size];
 
+        int lastIndex = 0;
+        for (int i = 0; i < categoryHandler.categories.length; i++) {
+            System.arraycopy(categoryHandler.categories[i].range, 0, allRange, lastIndex, categoryHandler.categories[i].range.length);
+            lastIndex += categoryHandler.categories[i].range.length;
         }
+        words = WordHandler.getWordsFromRange(allRange);
         shuffleArray(words);
 
         try {
@@ -216,8 +222,9 @@ public class TestActivity extends AppCompatActivity {
         int id = lastWordID + 1;
         this.lastWordIDD = id;
         Word w = words[id];
-        if (w.icon != null || w != null)
-            imageView.setImageDrawable(w.icon);
+        Drawable icon = DrawableGetter.getWordDrawable(id, this);
+        if (icon != null || w != null)
+            imageView.setImageDrawable(icon);
         if (isCz)
             wordView.setText(w.la);
         else

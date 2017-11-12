@@ -26,7 +26,8 @@ public class LoaderActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }.start();
-
+        Intent intent = new Intent(ctx, MainActivity.class);
+        startActivity(intent);
 
     }
 

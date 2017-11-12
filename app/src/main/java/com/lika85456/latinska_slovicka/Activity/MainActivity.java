@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.CategoryHandlerInString = new CategoryHandler(this).toString();
-
+        WordHandler.loadWords(this);
 
     }
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public void ProcvicovaniOnClick(View view) {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 0);
-        intent.putExtra("array", this.CategoryHandlerInString);
+        intent.putExtra("category", this.CategoryHandlerInString);
 
         startActivity(intent);
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public void TestOnClick(View view) {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 1);
-        intent.putExtra("array", this.CategoryHandlerInString);
+        intent.putExtra("category", this.CategoryHandlerInString);
         startActivity(intent);
 
 

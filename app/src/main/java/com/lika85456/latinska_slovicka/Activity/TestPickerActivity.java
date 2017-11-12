@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
-import com.lika85456.latinska_slovicka.Global;
 import com.lika85456.latinska_slovicka.R;
 
 /**
@@ -22,7 +21,7 @@ public class TestPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_picker);
-        Global.main_activity_context = getApplicationContext();
+
 
         Button btnStart = (Button) findViewById(R.id.buttonStart);
         final EditText pocetSlovicek = (EditText) findViewById(R.id.editPocetSlovicek);
@@ -41,8 +40,8 @@ public class TestPickerActivity extends AppCompatActivity {
                 intent.putExtra("pocetSlovicek", pocetS);
                 intent.putExtra("timer", sTimer.isChecked());
                 intent.putExtra("result", sResult.isChecked());
-                String toParse = getIntent().getStringExtra("array");
-                intent.putExtra("array", toParse);
+                String toParse = getIntent().getStringExtra("category");
+                intent.putExtra("category", toParse);
                 startActivity(intent);
             }
         });

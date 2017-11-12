@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
 import com.lika85456.latinska_slovicka.Resources.Word;
+import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -26,20 +28,24 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        String toParse = getIntent().getStringExtra("array");
+        String toParse = getIntent().getStringExtra("category");
         CategoryHandler categoryHandler = new CategoryHandler(toParse);
+
+        WordHandler.loadWords(this);
 
         int size = 0;
         for (int i = 0; i < categoryHandler.categories.length; i++) {
             size += categoryHandler.categories[i].getWordCount();
         }
         words = new Word[size];
+        int[] allRange = new int[size];
+
         int lastIndex = 0;
         for (int i = 0; i < categoryHandler.categories.length; i++) {
-            System.arraycopy(categoryHandler.categories[i].words, 0, words, lastIndex, categoryHandler.categories[i].words.length);
-            lastIndex += categoryHandler.categories[i].words.length;
+            System.arraycopy(categoryHandler.categories[i].range, 0, allRange, lastIndex, categoryHandler.categories[i].range.length);
+            lastIndex += categoryHandler.categories[i].range.length;
         }
-
+        words = WordHandler.getWordsFromRange(allRange);
 
         //Onclick events
         Button button_back = (Button) findViewById(R.id.button_back);
@@ -84,7 +90,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void loadWord(Word w) {
-        imageView.setImageDrawable(w.icon);
+        imageView.setImageDrawable(DrawableGetter.getWordDrawable(w.id, this));
         latinView.setText(w.la);
         czechView.setText(w.cz);
     }

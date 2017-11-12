@@ -92,7 +92,9 @@ public class CategoryHandler {
     public String toString() {
         String toPass = "";
         for (int i = 0; i < categories.length; i++) {
-            toPass += i + " " + categories[i].name + "|" + categories[i].sRange + "\n";
+            toPass += i + " " + categories[i].name + "|" + categories[i].sRange;
+            if (i < categories.length - 1)
+                toPass += "\n";
         }
         return toPass;
     }

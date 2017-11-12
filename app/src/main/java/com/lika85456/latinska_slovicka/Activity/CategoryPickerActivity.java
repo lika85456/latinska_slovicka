@@ -14,7 +14,6 @@ import com.lika85456.latinska_slovicka.CategorryArrayAdapter;
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
 import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
-import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,10 +28,10 @@ public class CategoryPickerActivity extends AppCompatActivity {
         //Take from intent to what activity should be run
         final Intent main_intent = getIntent();
 
-        WordHandler.loadWords(this);
+        //WordHandler.loadWords(this);
 
         //Some crap setting listView and its categories
-        CategoryHandler categoryHandler = new CategoryHandler(getIntent().getStringExtra("array"));
+        CategoryHandler categoryHandler = new CategoryHandler(getIntent().getStringExtra("category"));
         final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(categoryHandler.categories));
         ArrayAdapter<Category> adapter = new CategorryArrayAdapter(this, 0, categories);
         ListView listView = (ListView) findViewById(R.id.categoryListView);
@@ -51,7 +50,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
                 Boolean canContinue = false;
                 for (int i = 0; i < categories.size(); i++) {
                     if (categories.get(i).selected == true) {
-                        toPass += (categories.get(i)).toString() + "\n";
+                        toPass += (categories.get(i)).toString();
                         canContinue = true;
                     }
                 }
@@ -61,7 +60,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
                     return;
                 }
 
-                intent.putExtra("array", toPass);
+                intent.putExtra("category", toPass.substring(0, toPass.length() - 2));
                 v.getContext().startActivity(intent);
             }
         });
