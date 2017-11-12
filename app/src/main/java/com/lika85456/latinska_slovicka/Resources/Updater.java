@@ -76,11 +76,8 @@ public class Updater implements IUpdater{
             String[] slovickaInArray = slovicka.split("\\n");
             for (String slovicko : slovickaInArray) {
                 String id = slovicko.substring(0, slovicko.indexOf(" "));
-                try {
-                    http.saveImage("http://lika85456.4fan.cz/latina/a" + id + ".png", "a" + id);
-                } catch (IOException e) {
-                    Log.e("Loading images fucked", e.toString());
-                }
+                http.saveImage("http://lika85456.4fan.cz/latina/a" + id + ".png", "a" + id, ctx);
+
             }
 
             return true;

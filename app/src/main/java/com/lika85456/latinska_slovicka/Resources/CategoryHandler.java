@@ -42,6 +42,7 @@ public class CategoryHandler {
 
         // removes non-printable characters from Unicode
         s = s.replaceAll("\\p{C}", "");
+        s = s.replaceAll(" ", "");
 
         s.trim();
 

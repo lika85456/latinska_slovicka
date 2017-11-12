@@ -24,9 +24,9 @@ public class DrawableGetter {
 
         try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                return ctx.getResources().getDrawable(id, ctx.getTheme());
+                return ctx.getResources().getDrawable(resId, ctx.getTheme());
             } else {
-                return ctx.getResources().getDrawable(id);
+                return ctx.getResources().getDrawable(resId);
             }
         } catch (Exception e) {
             return null;

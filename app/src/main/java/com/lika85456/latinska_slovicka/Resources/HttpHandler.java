@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -35,7 +34,7 @@ public class HttpHandler {
             new GetUrlContentTask(this).execute(urls);
             int totalWaitTime = 5000;
             int time = 0;
-            while(response==null || time<totalWaitTime) {
+            while (response == null && time < totalWaitTime) {
                 time+=10;
                 Thread.sleep(10);
             }
@@ -49,20 +48,20 @@ public class HttpHandler {
         return null;
     }
 
-    public void saveImage(String imageUrl, String destinationFile) throws IOException {
-        URL url = new URL(imageUrl);
-        InputStream is = url.openStream();
-        OutputStream os = this.context.openFileOutput(destinationFile, Context.MODE_PRIVATE);
-
-        byte[] b = new byte[2048];
-        int length;
-
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+    public void saveImage(String imageUrl, String destinationFile, Context ctx) {
+        this.context = ctx;
+        try {
+            new GetDrawableContentTask(this, destinationFile).execute(imageUrl);
+            int totalWaitTime = 5000;
+            int time = 0;
+            while (response == null && time < totalWaitTime) {
+                time += 10;
+                Thread.sleep(10);
+            }
+            Log.i("JE TO TU", response);
+        } catch (Exception e) {
+            Log.d("Erol", e.toString());
         }
-
-        is.close();
-        os.close();
     }
 
     public void ddo(String s)
@@ -75,6 +74,47 @@ public class HttpHandler {
 
 
 }
+
+class GetDrawableContentTask extends AsyncTask<String, Integer, String> {
+    private HttpHandler h;
+    private String filename;
+
+    public GetDrawableContentTask(HttpHandler h, String filename) {
+        super();
+        this.h = h;
+        this.filename = filename;
+    }
+
+    protected String doInBackground(String... urls) {
+        try {
+            URL url = new URL(urls[0]);
+            InputStream is = url.openStream();
+            OutputStream os = this.h.context.openFileOutput(this.filename, Context.MODE_PRIVATE);
+
+            byte[] b = new byte[2048];
+            int length;
+
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
+
+            is.close();
+            os.close();
+        } catch (Exception e) {
+            Log.e("Error,", e.toString());
+        }
+
+        return null;
+    }
+
+    protected void onProgressUpdate(Integer... progress) {
+    }
+
+    protected void onPostExecute(String result) {
+        //h.ddo(result);
+    }
+}
+
 
 class GetUrlContentTask extends AsyncTask<String, Integer, String> {
     private HttpHandler h;

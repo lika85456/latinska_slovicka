@@ -22,7 +22,7 @@ public class Word {
     public Word(String s) {
         //0 voda|aqua
         int indexOfFirstSpace = s.indexOf(" ");
-        this.id = Integer.parseInt(s.substring(0, indexOfFirstSpace));
+        this.id = CategoryHandler.parseInt(s.substring(0, indexOfFirstSpace));
         String[] splited = s.substring(indexOfFirstSpace, s.length()).split("\\|");
         this.cz = splited[0];
         this.la = splited[1];
