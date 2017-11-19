@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class WordHandler {
     private static Word[] words;
 
+    public WordHandler(Resources res) {
+        this(res.slovicka);
+    }
+
     public WordHandler(String s) {
         String[] splited = s.split("\\n");
         ArrayList<Word> alWord = new ArrayList<Word>();
@@ -72,6 +76,7 @@ public class WordHandler {
      */
     public static Word[] getWordsFromRange(int[] range) {
         ArrayList<Word> tempWords = new ArrayList<Word>();
+        int length = WordHandler.words.length;
         for (int i : range) {
             tempWords.add(WordHandler.words[i]);
         }

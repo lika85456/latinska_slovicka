@@ -42,6 +42,7 @@ public class TestPickerActivity extends AppCompatActivity {
                 intent.putExtra("result", sResult.isChecked());
                 String toParse = getIntent().getStringExtra("category");
                 intent.putExtra("category", toParse);
+                intent.putExtra("resources", getIntent().getStringExtra("resources"));
                 startActivity(intent);
             }
         });

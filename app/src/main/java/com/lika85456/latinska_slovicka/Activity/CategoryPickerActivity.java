@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.lika85456.latinska_slovicka.CategorryArrayAdapter;
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
-import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.Resources;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,8 +31,10 @@ public class CategoryPickerActivity extends AppCompatActivity {
         //WordHandler.loadWords(this);
 
         //Some crap setting listView and its categories
-        CategoryHandler categoryHandler = new CategoryHandler(getIntent().getStringExtra("category"));
-        final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(categoryHandler.categories));
+        final Resources resources = new Resources(getIntent().getStringExtra("resources"));
+
+        final ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(Category.resourceToArray(resources.category)));
+
         ArrayAdapter<Category> adapter = new CategorryArrayAdapter(this, 0, categories);
         ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
@@ -60,7 +62,8 @@ public class CategoryPickerActivity extends AppCompatActivity {
                     return;
                 }
 
-                intent.putExtra("category", toPass.substring(0, toPass.length() - 2));
+                intent.putExtra("category", toPass.substring(0, toPass.length() - 1));
+                intent.putExtra("resources", resources.toString());
                 v.getContext().startActivity(intent);
             }
         });

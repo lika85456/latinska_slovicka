@@ -6,19 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lika85456.latinska_slovicka.R;
-import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
-import com.lika85456.latinska_slovicka.Resources.WordHandler;
+import com.lika85456.latinska_slovicka.Resources.Loader;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String CategoryHandlerInString = "";
+    public Loader loader;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.CategoryHandlerInString = new CategoryHandler(this).toString();
-        WordHandler.loadWords(this);
+        loader = new Loader(this);
+        loader.loadResources();
+
 
     }
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void ProcvicovaniOnClick(View view) {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 0);
-        intent.putExtra("category", this.CategoryHandlerInString);
+        intent.putExtra("resources", loader.getResources().toString());
 
         startActivity(intent);
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void TestOnClick(View view) {
         Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 1);
-        intent.putExtra("category", this.CategoryHandlerInString);
+        intent.putExtra("resources", loader.getResources().toString());
         startActivity(intent);
 
 

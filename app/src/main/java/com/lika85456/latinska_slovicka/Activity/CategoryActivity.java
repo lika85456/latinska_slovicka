@@ -8,8 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lika85456.latinska_slovicka.R;
-import com.lika85456.latinska_slovicka.Resources.CategoryHandler;
+import com.lika85456.latinska_slovicka.Resources.Category;
 import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
+import com.lika85456.latinska_slovicka.Resources.Resources;
 import com.lika85456.latinska_slovicka.Resources.Word;
 import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
@@ -28,22 +29,22 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        String toParse = getIntent().getStringExtra("category");
-        CategoryHandler categoryHandler = new CategoryHandler(toParse);
-
-        WordHandler.loadWords(this);
+        String categoryToParse = getIntent().getStringExtra("category");
+        Resources resources = new Resources(getIntent().getStringExtra("resources"));
+        new WordHandler(resources);
+        Category[] categories = Category.resourceToArray(categoryToParse);
 
         int size = 0;
-        for (int i = 0; i < categoryHandler.categories.length; i++) {
-            size += categoryHandler.categories[i].getWordCount();
+        for (int i = 0; i < categories.length; i++) {
+            size += categories[i].getWordCount();
         }
         words = new Word[size];
         int[] allRange = new int[size];
 
         int lastIndex = 0;
-        for (int i = 0; i < categoryHandler.categories.length; i++) {
-            System.arraycopy(categoryHandler.categories[i].range, 0, allRange, lastIndex, categoryHandler.categories[i].range.length);
-            lastIndex += categoryHandler.categories[i].range.length;
+        for (int i = 0; i < categories.length; i++) {
+            System.arraycopy(categories[i].range, 0, allRange, lastIndex, categories[i].range.length);
+            lastIndex += categories[i].range.length;
         }
         words = WordHandler.getWordsFromRange(allRange);
 
@@ -94,4 +95,5 @@ public class CategoryActivity extends AppCompatActivity {
         latinView.setText(w.la);
         czechView.setText(w.cz);
     }
+
 }

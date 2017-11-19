@@ -8,9 +8,22 @@ public class Resources {
     public String slovicka;
     public String category;
 
+    /***
+     * Makes Resources class again from s string
+     *
+     * @param s string made from toString method of this class
+     */
+    public Resources(String s) {
+        String[] splited = s.split("€");
+        this.slovicka = splited[0];
+        this.category = splited[1];
+    }
+
     public Resources() {
 
     }
 
-    //TODO maybe some methods to work with those?
+    public String toString() {
+        return (this.slovicka + "€" + this.category);
+    }
 }
