@@ -225,7 +225,7 @@ public class TestActivity extends AppCompatActivity {
         int id = lastWordID + 1;
         this.lastWordIDD = id;
         Word w = words[id];
-        Drawable icon = DrawableGetter.getWordDrawable(id, this);
+        Drawable icon = DrawableGetter.getWordDrawable(w.id, this);
         if (icon != null || w != null)
             imageView.setImageDrawable(icon);
         if (isCz)
