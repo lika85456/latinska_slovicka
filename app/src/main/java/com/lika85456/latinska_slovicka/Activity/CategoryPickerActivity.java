@@ -36,8 +36,6 @@ public class CategoryPickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_picker);
-
-
         final Context ctx = getApplicationContext();
         //Take from intent to what activity should be run
         final Intent main_intent = getIntent();
@@ -129,7 +127,16 @@ public class CategoryPickerActivity extends AppCompatActivity {
                 underCategoryPocet.setText("Slovíček: " + category.under_categories.get(ii).getWordCount());
                 underCategoryName.setText(category.under_categories.get(ii).name);
                 LinearLayout temp = (LinearLayout) v.findViewById(R.id.main_upper);
+                final CheckBox checkBox1 = (CheckBox) underCategoryView.findViewById(R.id.checkBox2);
                 underCategoryView.setVisibility(View.GONE);
+
+                LinearLayout layout2 = (LinearLayout) underCategoryView.findViewById(R.id.category_row);
+                layout2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        checkBox1.setChecked(!checkBox1.isChecked());
+                    }
+                });
 
                 final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);

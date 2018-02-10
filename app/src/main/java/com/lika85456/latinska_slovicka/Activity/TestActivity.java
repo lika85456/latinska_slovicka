@@ -41,19 +41,16 @@ public class TestActivity extends AppCompatActivity {
     public TextView textViewNLoader;
     public LinearLayout llGreen;
     public LinearLayout llNull;
-
-
     public int tryTotal;
     public int tryRight;
     public int TtryTotal;
     public int TtryRight;
     public int MAX_WORDS_IN_ROUND = 25;
-
     public byte rightWordID;
     public int lastWordIDD;
-
     public Resources resources;
     public boolean processingClick = false;
+    private Random r = new Random();
 
     public static void shuffleArray(Word[] ar) {
         Random rnd = new Random();
@@ -214,9 +211,8 @@ public class TestActivity extends AppCompatActivity {
         b2.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
         b3.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
         b4.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.test_button_normal, null));
-        Random r = new Random();
 
-        Boolean isCz = r.nextBoolean();
+
         if (lastWordID + 1 == MAX_WORDS_IN_ROUND) {
             lastWordID = -1;
         }
@@ -226,6 +222,11 @@ public class TestActivity extends AppCompatActivity {
         Drawable icon = DrawableGetter.getWordDrawable(w.getId(), this);
         if (icon != null || w != null)
             imageView.setImageDrawable(icon);
+
+        Boolean isCz = r.nextBoolean();
+        if (icon != null)
+            isCz = false;
+
         if (isCz)
             wordView.setText(w.getLa());
         else
@@ -246,13 +247,13 @@ public class TestActivity extends AppCompatActivity {
             b3.setText(wordds[2].getCz());
             b4.setText(wordds[3].getCz());
         }
-        float procentaT = 0;
+        //float procentaT = 0;
         float procenta = 0;
         //Set statistics shit text
 
 
-        if (TtryTotal != 0)
-            procentaT = ((float) TtryRight / (float) TtryTotal);
+        //if (TtryTotal != 0)
+        //    procentaT = ((float) TtryRight / (float) TtryTotal);
         if (tryTotal != 0)
             procenta = ((float) tryRight / (float) tryTotal);
 

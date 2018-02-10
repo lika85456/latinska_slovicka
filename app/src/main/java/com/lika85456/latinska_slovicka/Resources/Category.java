@@ -13,8 +13,6 @@ public class Category {
     public String name;
     public int id;
     public String sRange;
-    // for arrayAdapter in categoryPicker
-    public Boolean selected = false;
     private int[] range;
 
     public Category(int id, String name, int[] range) {
@@ -46,7 +44,6 @@ public class Category {
      * @return array of all categories
      */
     public static Category[] resourceToArray(String category) {
-        long startTime = System.currentTimeMillis();
         String[] splited = category.split("\\n");
         Category[] al = new Category[splited.length];
         int numberOfComments = 0;
@@ -58,9 +55,7 @@ public class Category {
             }
             al[i - numberOfComments] = new Category(line);
         }
-        Category[] toRet = Arrays.copyOfRange(al, 0, al.length - numberOfComments);
-        Log.d("TIME", "Category resourceToArray:" + String.valueOf(System.currentTimeMillis() - startTime));
-        return toRet;
+        return Arrays.copyOfRange(al, 0, al.length - numberOfComments);
     }
 
     private static int[] makeRange(String s) {
