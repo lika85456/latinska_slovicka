@@ -2,16 +2,23 @@
 <resources>
     <color name="colorPrimary">#0065FF</color>
     <color name="colorPrimaryDark">#004c8c</color>
-    <color name="colorLight">#58a5f0</color>
+    <color name="colorLight">#b5e9e4</color>
 
     <color name="colorAccent">#0367f4</color>
 
-    <color name="background">#eee</color>
-    <color name="text_dark">#000</color>
+    <color name="background">#eeeeee</color>
+    <color name="text_dark">#000000</color>
     <color name="text_light">#444</color>
-    <color name="text_white">#EEE</color>
+    <color name="text_white">#eeeeee</color>
     <color name="button_text">#eeeeee</color>
     <color name="button_background">#03a9f4</color>
     <color name="top_bar_text">#EEE</color>
-    <color name="white">#CCC</color>
+    <color name="white">#e2e2f9</color>
+    <color name="just_blue">#9ca2e3</color>
+    <color name="background_of_category_picker_category">#e1e1e1</color>
+    <color name="colorDarkerLight">#4d94ff</color>
+    <color name="someAnotherColor">#1d89e8</color>
+    <color name="color1">#3385ff</color>
+    <color name="color2">#98b6e2</color>
+    <color name="black">#101010</color>
 </resources>

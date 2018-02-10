@@ -1,77 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="31pt"
-    android:clickable="true"
-    android:id="@+id/main_lin_layout"
-    android:background="@color/white">
-<LinearLayout
-    android:layout_height="30pt"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_weight="0">
-    <ImageView
-        android:layout_width="30pt"
-        android:layout_height="30pt"
-        android:id="@+id/imageView"
-        android:layout_weight="0" />
+    android:layout_height="30pt"
+    android:clickable="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:id="@+id/category_row"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:background="@color/color2"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5pt"
+            android:buttonTint="@color/colorPrimary" />
 
         <TextView
+            android:id="@+id/under_category_name"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="New Text"
-            android:id="@+id/categoryName_text"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:minLines="1"
-            android:maxLines="3"
-            android:textColor="@color/text_dark"
-            android:textSize="8pt" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5pt"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="8.5pt" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/numberOfWordsTextView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:paddingRight="3pt">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Počet slov:"
-                android:id="@+id/textView2"
-                android:textColor="@color/text_dark"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/wordCount_text"
-                android:layout_gravity="center"
-                android:layout_weight="0.1"
-                android:gravity="center_vertical"
-                android:textColor="@color/text_dark" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8pt"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
+            android:textSize="6.5pt" />
 
     </LinearLayout>
-
-</LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="1"
-        android:layout_gravity="bottom"
-        android:background="#111"></LinearLayout>
 
 </LinearLayout>

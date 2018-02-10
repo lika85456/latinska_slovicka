@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Category;
 import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
+import com.lika85456.latinska_slovicka.Resources.Loader;
 import com.lika85456.latinska_slovicka.Resources.Resources;
 import com.lika85456.latinska_slovicka.Resources.Word;
 import com.lika85456.latinska_slovicka.Resources.WordHandler;
@@ -51,7 +52,7 @@ public class TestActivity extends AppCompatActivity {
     public byte rightWordID;
     public int lastWordIDD;
 
-
+    public Resources resources;
     public boolean processingClick = false;
 
     public static void shuffleArray(Word[] ar) {
@@ -76,11 +77,8 @@ public class TestActivity extends AppCompatActivity {
         */
 
         String categoryToParse = getIntent().getStringExtra("category");
-        final Resources resources = new Resources(getIntent().getStringExtra("resources"));
-        new WordHandler(resources);
-        Category[] categories = Category.resourceToArray(categoryToParse);
-
-
+        final Category[] categories = Category.resourceToArray(categoryToParse);
+        resources = Loader.getResources(this.getBaseContext());
         int size = 0;
         for (int i = 0; i < categories.length; i++) {
             size += categories[i].getWordCount();
@@ -90,11 +88,13 @@ public class TestActivity extends AppCompatActivity {
 
         int lastIndex = 0;
         for (int i = 0; i < categories.length; i++) {
-            System.arraycopy(categories[i].range, 0, allRange, lastIndex, categories[i].range.length);
-            lastIndex += categories[i].range.length;
+            System.arraycopy(categories[i].getRange(), 0, allRange, lastIndex, categories[i].getRange().length);
+            lastIndex += categories[i].getRange().length;
         }
+        new WordHandler(resources);
         words = WordHandler.getWordsFromRange(allRange);
         shuffleArray(words);
+
 
         try {
             this.MAX_WORDS_IN_ROUND = Integer.parseInt(getIntent().getStringExtra("pocetSlovicek"));
@@ -150,13 +150,11 @@ public class TestActivity extends AppCompatActivity {
                 Intent intent;
                 intent = new Intent(v.getContext(), CategoryPickerActivity.class);
                 intent.putExtra("goto", 1);
-                intent.putExtra("resources", resources.toString());
                 v.getContext().startActivity(intent);
             }
         });
-
-
         loadNextWord(-1);
+
     }
 
     public void btnOnClick(int id, View v) {
@@ -225,28 +223,28 @@ public class TestActivity extends AppCompatActivity {
         int id = lastWordID + 1;
         this.lastWordIDD = id;
         Word w = words[id];
-        Drawable icon = DrawableGetter.getWordDrawable(w.id, this);
+        Drawable icon = DrawableGetter.getWordDrawable(w.getId(), this);
         if (icon != null || w != null)
             imageView.setImageDrawable(icon);
         if (isCz)
-            wordView.setText(w.la);
+            wordView.setText(w.getLa());
         else
-            wordView.setText(w.cz);
+            wordView.setText(w.getCz());
         Word[] wordds = generate4(w);
         rightWordID = (byte) randomFromTo(0, 3);
         wordds[rightWordID] = w;
         if (!isCz) {
-            //Load in latin
-            b1.setText(wordds[0].la);
-            b2.setText(wordds[1].la);
-            b3.setText(wordds[2].la);
-            b4.setText(wordds[3].la);
+            //Load in getLa()tin
+            b1.setText(wordds[0].getLa());
+            b2.setText(wordds[1].getLa());
+            b3.setText(wordds[2].getLa());
+            b4.setText(wordds[3].getLa());
         } else {
             //Load in czech
-            b1.setText(wordds[0].cz);
-            b2.setText(wordds[1].cz);
-            b3.setText(wordds[2].cz);
-            b4.setText(wordds[3].cz);
+            b1.setText(wordds[0].getCz());
+            b2.setText(wordds[1].getCz());
+            b3.setText(wordds[2].getCz());
+            b4.setText(wordds[3].getCz());
         }
         float procentaT = 0;
         float procenta = 0;

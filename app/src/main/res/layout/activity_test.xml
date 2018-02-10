@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="top|center_horizontal"
-                    android:text="Large Text"
+                    android:text="Načítání"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/text_dark"
                     android:textSize="35dp" />
@@ -103,32 +103,32 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <Button
                             android:id="@+id/button1"
                             android:layout_width="150dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:layout_gravity="bottom|right"
-                            android:background="@drawable/test_button_normal"
-                            android:text="New Button" />
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <Button
                             android:id="@+id/button2"
                             android:layout_width="150dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:layout_gravity="top|right"
-                            android:background="@drawable/test_button_normal"
-                            android:text="New Button" />
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -140,32 +140,32 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <Button
                             android:id="@+id/button3"
                             android:layout_width="150dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:layout_gravity="left|bottom"
-                            android:background="@drawable/test_button_normal"
-                            android:text="New Button" />
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <Button
                             android:id="@+id/button4"
                             android:layout_width="150dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="55dp"
                             android:layout_gravity="top|left"
-                            android:background="@drawable/test_button_normal"
-                            android:text="New Button" />
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/test_button_normal" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -233,7 +233,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="15dp"
-                                    android:text="Small Text"
                                     android:textAppearance="?android:attr/textAppearanceSmall" />
                             </LinearLayout>
 
@@ -249,7 +248,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="15dp"
-                                    android:text="Small Text"
                                     android:textAppearance="?android:attr/textAppearanceSmall" />
                             </LinearLayout>
                         </LinearLayout>
@@ -284,7 +282,6 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="Medium Text"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </LinearLayout>

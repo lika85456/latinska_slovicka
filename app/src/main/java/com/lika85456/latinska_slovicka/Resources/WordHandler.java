@@ -15,12 +15,37 @@ public class WordHandler {
     }
 
     public WordHandler(String s) {
+        long milis = System.currentTimeMillis();
         String[] splited = s.split("\\n");
         ArrayList<Word> alWord = new ArrayList<Word>();
-        for (String line : splited) {
+        for (int i = 0; i < splited.length; i++) {
+            String line = splited[i];
+            if (line.startsWith("//")) continue;
             alWord.add(new Word(line));
         }
         WordHandler.words = alWord.toArray(new Word[0]);
+
+
+
+        /*
+                long milis = System.currentTimeMillis();
+
+
+        String[] splited = s.split("\\n");
+        Word[] al = new Word[splited.length];
+        int numberOfComments = 0;
+        for (int i =0;i<al.length;i++) {
+            String line = splited[i];
+            if(line.startsWith("//")  || line.replaceAll("\\s+","").equals(""))
+            {
+                numberOfComments++;
+                continue;
+            }
+            al[i-numberOfComments] = new Word(line);
+        }
+        WordHandler.words = Arrays.copyOfRange(al, 0, al.length-numberOfComments);
+        Log.d("TIME","Word constructor time:"+String.valueOf(System.currentTimeMillis()-milis));
+         */
     }
 
     public static void loadWords(Context ctx) {
@@ -75,12 +100,12 @@ public class WordHandler {
      * @return array of words
      */
     public static Word[] getWordsFromRange(int[] range) {
-        ArrayList<Word> tempWords = new ArrayList<Word>();
-        int length = WordHandler.words.length;
-        for (int i : range) {
-            tempWords.add(WordHandler.words[i]);
+        int length = range.length;
+        Word[] toRet = new Word[length];
+        for (int i = 0; i < length; i++) {
+            toRet[i] = (WordHandler.words[range[i]]);
         }
-        return tempWords.toArray(new Word[0]);
+        return toRet;
     }
 
 }

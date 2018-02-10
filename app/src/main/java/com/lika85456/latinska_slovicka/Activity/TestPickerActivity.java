@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.lika85456.latinska_slovicka.R;
+import com.lika85456.latinska_slovicka.Resources.Loader;
+import com.lika85456.latinska_slovicka.Resources.Resources;
 
 /**
  * author: lika85456
@@ -16,7 +18,9 @@ import com.lika85456.latinska_slovicka.R;
  * Test settings
  */
 public class TestPickerActivity extends AppCompatActivity {
+    public Intent intent;
 
+    public Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,7 @@ public class TestPickerActivity extends AppCompatActivity {
         final EditText pocetSlovicek = (EditText) findViewById(R.id.editPocetSlovicek);
         final Switch sTimer = (Switch) findViewById(R.id.switchTimer);
         final Switch sResult = (Switch) findViewById(R.id.switchResult);
-
+        resources = Loader.getResources(this.getBaseContext());
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +46,6 @@ public class TestPickerActivity extends AppCompatActivity {
                 intent.putExtra("result", sResult.isChecked());
                 String toParse = getIntent().getStringExtra("category");
                 intent.putExtra("category", toParse);
-                intent.putExtra("resources", getIntent().getStringExtra("resources"));
                 startActivity(intent);
             }
         });

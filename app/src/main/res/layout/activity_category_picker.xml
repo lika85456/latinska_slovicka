@@ -22,6 +22,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/top_bar_text" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5pt"
+            android:background="#1418fb"
+            android:orientation="horizontal"></LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -30,26 +36,29 @@
         android:layout_below="@+id/linearLayout"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/categoryListView"
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/linearLayout"
-            android:layout_weight="1"
-            android:padding="3pt" />
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/scrollLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="55dp"
             android:layout_weight="0"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_continue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -57,6 +66,7 @@
                 android:text="Pokračovat"
                 android:textColor="@color/top_bar_text" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

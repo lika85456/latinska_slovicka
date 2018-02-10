@@ -1,7 +1,7 @@
 package com.lika85456.latinska_slovicka.Resources;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.lika85456.latinska_slovicka.R;
@@ -17,28 +17,18 @@ import java.util.ArrayList;
  * Created by lika85456 on 14.11.2017.
  */
 public class Loader {
-    public final Context ctx;
-    /**
-     * Wait time in miliseconds
-     */
-    private final int waitTime = 5000;
-    private Resources resources;
-
-    public Loader(Context ctx) {
-        this.resources = new Resources();
-        this.ctx = ctx;
-    }
-
+    public static boolean loaded = false;
     /***
-     * Loads resources into memory (i hope)
+     * Loads resources into sharedPreferences
      */
-    public void loadResources() {
+    public static void loadResources(final Context ctx) {
+
         //TODO Load resources
-        final Resources s = this.resources;
         new Thread(new Runnable() {
             public void run() {
-                String[] slovicka = new Loader(ctx).loadFile("slovicka");
-                String[] category = new Loader(ctx).loadFile("category");
+                Resources resources = new Resources();
+                String[] slovicka = Loader.loadFile("slovicka", ctx);
+                String[] category = Loader.loadFile("category", ctx);
                 String ss = "", c = "";
                 for (String line : slovicka) {
                     ss += line + "\n";
@@ -46,11 +36,18 @@ public class Loader {
                 for (String line : category) {
                     c += line + "\n";
                 }
-                s.slovicka = ss;
-                s.category = c;
+                resources.slovicka = ss;
+                resources.category = c;
+                SharedPreferences sharedPref = ctx.getSharedPreferences(
+                        "com.lika85456.latinska_slovicka_RESOURCES", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("com.lika85456.latinska_slovicka_RESOURCES", resources.toString());
+                editor.commit();
+
             }
         }).start();
 
+        loaded = true;
     }
 
     /***
@@ -58,17 +55,25 @@ public class Loader {
      *
      * @return Resources
      */
-    public Resources getResources() {
-        int waitedTime = 0;
-        while (resources == null && waitedTime < waitTime) {
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                Log.e("Error", e.toString());
-            }
-            waitedTime += 5;
+    public static Resources getResources(Context ctx) {
+
+        SharedPreferences sharedPref = ctx.getSharedPreferences("com.lika85456.latinska_slovicka_RESOURCES", Context.MODE_PRIVATE);
+        String ctString = sharedPref.getString("com.lika85456.latinska_slovicka_RESOURCES", "");
+        if (ctString.equals("") && loaded == false)
+            Loader.loadResources(ctx);
+        else if (ctString.equals("") && loaded == true) {
+            while (ctString.equals(""))
+                ctString = sharedPref.getString("com.lika85456.latinska_slovicka_RESOURCES", "");
         }
-        return resources;
+        Resources res = new Resources(ctString);
+
+        return res;
+    }
+
+    public static boolean isLoaded(Context ctx) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences("com.lika85456.latinska_slovicka_RESOURCES", Context.MODE_PRIVATE);
+        String ctString = sharedPref.getString("com.lika85456.latinska_slovicka_RESOURCES", "");
+        return !ctString.equals("");
     }
 
 
@@ -78,7 +83,7 @@ public class Loader {
      * @param path name of the resource
      * @return String array of lines
      */
-    private String[] loadFile(String path) {
+    private static String[] loadFile(String path, Context ctx) {
         //if(files==null) init();
         int resId = -1;
         try {
@@ -89,7 +94,7 @@ public class Loader {
 
         }
         if (0 < resId)
-            return LoadText(resId);
+            return LoadText(resId, ctx);
         else
             return null;
     }
@@ -100,7 +105,7 @@ public class Loader {
      * @param name of Drawable
      * @return Drawable
      */
-    private Drawable loadDrawable(String name) {
+    /*private Drawable loadDrawable(String name) {
         //if(files==null) init();
         int resId;
         try {
@@ -112,6 +117,7 @@ public class Loader {
 
         return null;
     }
+    */
 
     /***
      * Load drawable by its id
@@ -119,7 +125,7 @@ public class Loader {
      * @param id id of drawable
      * @return Drawable
      */
-    private Drawable LoadDrawable(int id) {
+    /*private Drawable LoadDrawable(int id) {
         //if(files==null) init();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             return this.ctx.getResources().getDrawable(id, this.ctx.getTheme());
@@ -127,6 +133,7 @@ public class Loader {
             return this.ctx.getResources().getDrawable(id);
         }
     }
+    */
 
     /***
      * Load file from resources by its resourceId
@@ -134,12 +141,12 @@ public class Loader {
      * @param resourceId
      * @return String array of lines
      */
-    private String[] LoadText(int resourceId) {
+    private static String[] LoadText(int resourceId, Context ctx) {
         //if(files==null) init();
         if (resourceId == -1)
             return null;
         // The InputStream opens the resourceId and sends it to the buffer
-        InputStream is = this.ctx.getResources().openRawResource(resourceId);
+        InputStream is = ctx.getResources().openRawResource(resourceId);
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-16")));
@@ -164,4 +171,5 @@ public class Loader {
         }
         return s.toArray(new String[0]);
     }
+
 }

@@ -3,6 +3,7 @@ package com.lika85456.latinska_slovicka.Resources;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Category data structure
@@ -11,18 +12,16 @@ import java.util.ArrayList;
 public class Category {
     public String name;
     public int id;
-    public int[] range;
     public String sRange;
-
     // for arrayAdapter in categoryPicker
     public Boolean selected = false;
+    private int[] range;
 
     public Category(int id, String name, int[] range) {
         this.name = name;
         this.id = id;
         this.range = range;
     }
-
 
     public Category() {
 
@@ -34,11 +33,10 @@ public class Category {
      * @param s Line of category.txt
      */
     public Category(String s) {
-        String[] splited = s.split("\\|");
+        String[] splited = convertStringToUTF8(s).split("\\|");
         this.name = splited[0].substring(splited[0].indexOf(" ") + 1);
-        this.id = parseInt(convertStringToUTF8(splited[0]).substring(0, convertStringToUTF8(splited[0]).indexOf(" ")));
-        this.range = makeRange(convertStringToUTF8(splited[1]));
-        this.sRange = convertStringToUTF8(splited[1]);
+        this.id = parseInt((splited[0]).substring(0, (splited[0]).indexOf(" ")));
+        this.sRange = (splited[1]).replaceAll("\\s+", "");
     }
 
     /***
@@ -48,49 +46,63 @@ public class Category {
      * @return array of all categories
      */
     public static Category[] resourceToArray(String category) {
+        long startTime = System.currentTimeMillis();
         String[] splited = category.split("\\n");
-        ArrayList<Category> al = new ArrayList<Category>();
-        for (String line : splited) {
-            al.add(new Category(line));
+        Category[] al = new Category[splited.length];
+        int numberOfComments = 0;
+        for (int i = 0; i < al.length; i++) {
+            String line = splited[i];
+            if (line.startsWith("//") || line.replaceAll("\\s+", "").equals("")) {
+                numberOfComments++;
+                continue;
+            }
+            al[i - numberOfComments] = new Category(line);
         }
-        return al.toArray(new Category[0]);
+        Category[] toRet = Arrays.copyOfRange(al, 0, al.length - numberOfComments);
+        Log.d("TIME", "Category resourceToArray:" + String.valueOf(System.currentTimeMillis() - startTime));
+        return toRet;
     }
 
     private static int[] makeRange(String s) {
         //0-31,35
         String[] splited = s.split(",");
-        ArrayList<String> ar = new ArrayList<String>();
-        for (String line : splited) {
-            if (line.contains("-")) {
-                String[] sslited = line.split("-");
-                for (int i = parseInt(sslited[0]); i < parseInt(sslited[1]) + 1; i++) {
-                    ar.add(String.valueOf(i));
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for (int i = 0; i < splited.length; i++) {
+            if (splited[i].contains("-")) {
+                String[] invervalSplited = splited[i].split("-");
+                int start = parseInt(invervalSplited[0]);
+                int end = parseInt(invervalSplited[1]) + 1;
+                for (int x = start; x < end; x++) {
+                    arrayList.add(x);
                 }
-            } else
-                ar.add(line);
+            } else {
+                arrayList.add(parseInt(splited[i]));
+            }
+
         }
-        int[] ret = new int[ar.size()];
-        for (int i = 0; i < ar.size(); i++) {
-            ret[i] = parseInt(ar.get(i));
+        int[] ret = new int[arrayList.size()];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = arrayList.get(i);
         }
         return ret;
     }
 
     public static int parseInt(String s) {
-
+        if (s.equals("")) {
+            s = "";
+        }
         // strips off all non-ASCII characters
-        s = s.replaceAll("[^\\x00-\\x7F]", "");
+        //s = s.replaceAll("[^\\x00-\\x7F]", "");
 
         // erases all the ASCII control characters
-        s = s.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+        //s = s.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
 
         // removes non-printable characters from Unicode
-        s = s.replaceAll("\\p{C}", "");
+        //s = s.replaceAll("\\p{C}", "");
         s = s.replaceAll(" ", "");
 
-        s.trim();
-
-        return Integer.parseInt(convertStringToUTF8(s));
+        //s.trim();
+        return Integer.parseInt(s);
     }
 
     private static String convertStringToUTF8(String s) {
@@ -103,11 +115,18 @@ public class Category {
         return null;
     }
 
+    public int[] getRange() {
+        if (range == null) {
+            this.range = makeRange(sRange);
+        }
+        return this.range;
+    }
+
     public String toString() {
         return id + " " + name + "|" + sRange + "\n";
     }
 
     public int getWordCount() {
-        return range.length;
+        return getRange().length;
     }
 }

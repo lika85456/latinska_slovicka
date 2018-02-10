@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/button_background"
+                    android:background="@color/colorPrimary"
                     android:text="Spustit"
                     android:textColor="@color/button_text" />
             </LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_upper"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#d3dbe7"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/category_main_row"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:background="@color/color1"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3pt"
+            android:buttonTint="@color/colorPrimary"
+            android:paddingBottom="5pt"
+            android:paddingLeft="5pt"
+            android:paddingTop="5pt" />
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_white"
+            android:textSize="10pt" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="15pt"
+                android:layout_height="15pt"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10pt"
+                android:adjustViewBounds="true" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

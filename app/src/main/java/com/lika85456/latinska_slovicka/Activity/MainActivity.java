@@ -9,43 +9,32 @@ import com.lika85456.latinska_slovicka.R;
 import com.lika85456.latinska_slovicka.Resources.Loader;
 
 public class MainActivity extends AppCompatActivity {
-
-    public Loader loader;
-
-
+    public Intent intent;
+    public boolean canProceed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loader = new Loader(this);
-        loader.loadResources();
-
-
+        Loader.loadResources(this.getBaseContext());
+        intent = new Intent(this, CategoryPickerActivity.class);
     }
 
 
     public void ProcvicovaniOnClick(View view) {
-        Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 0);
-        intent.putExtra("resources", loader.getResources().toString());
-
         startActivity(intent);
 
 
     }
 
     public void TestOnClick(View view) {
-        Intent intent = new Intent(this, CategoryPickerActivity.class);
         intent.putExtra("goto", 1);
-        intent.putExtra("resources", loader.getResources().toString());
         startActivity(intent);
 
 
     }
 
     public void NastaveniOnClick(View view) {
-        Intent intent = new Intent(this, NastaveniActivity.class);
-
         //intent.putExtra(COINS, coins);
         startActivity(intent);
 
