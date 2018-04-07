@@ -10,6 +10,7 @@ import com.lika85456.latinska_slovicka.R;
  */
 public class DrawableGetter {
     public static Drawable getWordDrawable(int id, Context ctx) {
+        if (id == -1) return null;
         StorageHandler sH = new StorageHandler(ctx);
         Drawable t = sH.loadImageFromStorage("a" + String.valueOf(id));
         if (t != null) return t;
@@ -17,9 +18,9 @@ public class DrawableGetter {
         try {
             resId = R.raw.class.getField("a" + id).getInt(null);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         try {

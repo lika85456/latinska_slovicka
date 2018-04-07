@@ -24,12 +24,12 @@
             android:name=".Activity.TestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.NastaveniActivity"
+            android:name=".Activity.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CategoryPickerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.CategoryActivity" />
+        <activity android:name=".Activity.PracticeActivity" />
         <activity android:name=".Activity.TestResultActivity" />
         <activity android:name=".Activity.TestPickerActivity" />
 

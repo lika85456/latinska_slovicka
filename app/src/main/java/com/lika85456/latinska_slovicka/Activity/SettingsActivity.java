@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.lika85456.latinska_slovicka.R;
 
-public class NastaveniActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

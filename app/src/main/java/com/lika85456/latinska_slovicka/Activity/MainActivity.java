@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Loader.loadResources(this.getBaseContext());
         intent = new Intent(this, CategoryPickerActivity.class);
+
     }
 
 

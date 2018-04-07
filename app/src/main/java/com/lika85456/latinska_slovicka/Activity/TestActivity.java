@@ -19,7 +19,6 @@ import com.lika85456.latinska_slovicka.Resources.DrawableGetter;
 import com.lika85456.latinska_slovicka.Resources.Loader;
 import com.lika85456.latinska_slovicka.Resources.Resources;
 import com.lika85456.latinska_slovicka.Resources.Word;
-import com.lika85456.latinska_slovicka.Resources.WordHandler;
 
 import java.util.Random;
 
@@ -68,28 +67,10 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        /*intent.putExtra("pocetSlovicek",pocetSlovicek.getText());
-        intent.putExtra("timer",sTimer.isChecked());
-        intent.putExtra("result",sResult.isChecked());
-        */
-
-        String categoryToParse = getIntent().getStringExtra("category");
-        final Category[] categories = Category.resourceToArray(categoryToParse);
         resources = Loader.getResources(this.getBaseContext());
-        int size = 0;
-        for (int i = 0; i < categories.length; i++) {
-            size += categories[i].getWordCount();
-        }
-        words = new Word[size];
-        int[] allRange = new int[size];
-
-        int lastIndex = 0;
-        for (int i = 0; i < categories.length; i++) {
-            System.arraycopy(categories[i].getRange(), 0, allRange, lastIndex, categories[i].getRange().length);
-            lastIndex += categories[i].getRange().length;
-        }
-        new WordHandler(resources);
-        words = WordHandler.getWordsFromRange(allRange);
+        String categoryToParse = getIntent().getStringExtra("category");
+        Category[] categories = resources.getCategories(categoryToParse);
+        words = resources.getWordsFromRange(resources.getRangeFromCategories(categories));
         shuffleArray(words);
 
 
@@ -219,9 +200,8 @@ public class TestActivity extends AppCompatActivity {
         int id = lastWordID + 1;
         this.lastWordIDD = id;
         Word w = words[id];
-        Drawable icon = DrawableGetter.getWordDrawable(w.getId(), this);
-        if (icon != null || w != null)
-            imageView.setImageDrawable(icon);
+        Drawable icon = DrawableGetter.getWordDrawable(w.getImageId(), this);
+        imageView.setImageDrawable(icon);
 
         Boolean isCz = r.nextBoolean();
         if (icon != null)

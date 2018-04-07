@@ -3,16 +3,15 @@ package com.lika85456.latinska_slovicka.Resources;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Category data structure
  * Created by lika85456 on 08.11.2017.
  */
 public class Category {
-    public String name;
-    public int id;
-    public String sRange;
+    private String name;
+    private int id;
+    private String sRange;
     private int[] range;
 
     public Category(int id, String name, int[] range) {
@@ -21,9 +20,7 @@ public class Category {
         this.range = range;
     }
 
-    public Category() {
 
-    }
 
     /***
      * Makes category from string in category.txt
@@ -37,26 +34,7 @@ public class Category {
         this.sRange = (splited[1]).replaceAll("\\s+", "");
     }
 
-    /***
-     * Makes array of categories from Resources.category
-     *
-     * @param category Resources.category string
-     * @return array of all categories
-     */
-    public static Category[] resourceToArray(String category) {
-        String[] splited = category.split("\\n");
-        Category[] al = new Category[splited.length];
-        int numberOfComments = 0;
-        for (int i = 0; i < al.length; i++) {
-            String line = splited[i];
-            if (line.startsWith("//") || line.replaceAll("\\s+", "").equals("")) {
-                numberOfComments++;
-                continue;
-            }
-            al[i - numberOfComments] = new Category(line);
-        }
-        return Arrays.copyOfRange(al, 0, al.length - numberOfComments);
-    }
+
 
     private static int[] makeRange(String s) {
         //0-31,35
@@ -123,5 +101,13 @@ public class Category {
 
     public int getWordCount() {
         return getRange().length;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -36,7 +36,7 @@ public class Loader {
                 for (String line : category) {
                     c += line + "\n";
                 }
-                resources.slovicka = ss;
+                resources.words = ss;
                 resources.category = c;
                 SharedPreferences sharedPref = ctx.getSharedPreferences(
                         "com.lika85456.latinska_slovicka_RESOURCES", Context.MODE_PRIVATE);

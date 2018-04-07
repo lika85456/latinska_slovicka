@@ -44,16 +44,17 @@ public class CategoryPickerActivity extends AppCompatActivity {
         //Some crap setting listView and its categories
         resources = Loader.getResources(this.getBaseContext());
 
-        Category[] cArray = Category.resourceToArray(resources.category);
+        Category[] categoryArray = resources.getAllCategories();
 
-        categories = new ArrayList<Category>(Arrays.asList(cArray));
+        categories = new ArrayList<Category>(Arrays.asList(categoryArray));
 
         LinearLayout scrollView = (LinearLayout) findViewById(R.id.scrollLayout);
 
         upperCategories = new ArrayList<>();
+        //Upper categories stuff (todo refactor its bullshit anyways)
         for (int i = 0; i < categories.size(); i++) {
             Category category = categories.get(i);
-            String temp[] = category.name.split("\\s+");
+            String temp[] = category.getName().split("\\s+");
             int index = temp.length;
             boolean keep = true;
             for (int ii = 0; ii < temp.length; ii++) {
@@ -71,9 +72,9 @@ public class CategoryPickerActivity extends AppCompatActivity {
             }
             upperName = upperName.substring(0, upperName.length() - 1);
             if (keep == false) {
-                category.name = "";
+                category.setName("");
                 for (int xi = index + 1; xi < temp.length; xi++) {
-                    category.name += temp[xi] + " ";
+                    category.setName(category.getName() + temp[xi] + " ");
                 }
             }
             boolean shouldAdd = true;
@@ -125,7 +126,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
                 TextView underCategoryName = (TextView) underCategoryView.findViewById(R.id.under_category_name);
                 TextView underCategoryPocet = (TextView) underCategoryView.findViewById(R.id.numberOfWordsTextView);
                 underCategoryPocet.setText("Slovíček: " + category.under_categories.get(ii).getWordCount());
-                underCategoryName.setText(category.under_categories.get(ii).name);
+                underCategoryName.setText(category.under_categories.get(ii).getName());
                 LinearLayout temp = (LinearLayout) v.findViewById(R.id.main_upper);
                 final CheckBox checkBox1 = (CheckBox) underCategoryView.findViewById(R.id.checkBox2);
                 underCategoryView.setVisibility(View.GONE);
@@ -165,7 +166,7 @@ public class CategoryPickerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (main_intent.getIntExtra("goto", 0) == 0)
-                    intent = new Intent(v.getContext(), CategoryActivity.class);
+                    intent = new Intent(v.getContext(), PracticeActivity.class);
                 else
                     intent = new Intent(v.getContext(), TestPickerActivity.class);
                 String toPass = "";
@@ -200,28 +201,5 @@ public class CategoryPickerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private ArrayList<View> getAllChildren(View v) {
-
-        if (!(v instanceof ViewGroup)) {
-            ArrayList<View> viewArrayList = new ArrayList<View>();
-            viewArrayList.add(v);
-            return viewArrayList;
-        }
-
-        ArrayList<View> result = new ArrayList<View>();
-
-        ViewGroup vg = (ViewGroup) v;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-
-            View child = vg.getChildAt(i);
-
-            ArrayList<View> viewArrayList = new ArrayList<View>();
-            viewArrayList.add(v);
-            viewArrayList.addAll(getAllChildren(child));
-
-            result.addAll(viewArrayList);
-        }
-        return result;
-    }
 
 }
