@@ -18,3 +18,5 @@ a1.png = obrázek s hadem<br>
 <br>
 soubory pro nadhledy kategorií<br>
 s{ID_KATEGORIE}.png - pravidla o velikosti stejná!<br>
+
+xD
